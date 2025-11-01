@@ -1,0 +1,14 @@
+# OS / editor
+.DS_Store
+.vscode/
+
+# builds & deps
+node_modules/
+dist/
+build/
+coverage/
+*.log
+*.lock
+
+# backend (not deployed on GitHub Pages)
+appointment-backend/
