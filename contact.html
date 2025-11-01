@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png?v=4">
+<link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png?v=4">
+<link rel="apple-touch-icon" href="icon/apple-touch-icon.png?v=4">
+<link rel="manifest" href="site.webmanifest?v=4">
+<link rel="shortcut icon" href="favicon.ico?v=4">
+
+  <title>Following Sky — Contact</title>
+  <style>
+    :root{
+      --bg:#0b0b0b; --text:#f5f5f5; --muted:#b3b3b3;
+      --gold:#d4af37; --gold2:#f4c542; --card:#121212;
+      --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.35);
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Helvetica,Arial}
+    a{color:inherit;text-decoration:none}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:40;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{max-width:var(--maxw);margin:auto;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+    .brand{font-weight:800}
+    .links a{margin-left:16px;opacity:.9}
+    .links a:hover{opacity:1}
+
+    /* Page */
+    .container{max-width:var(--maxw);margin:auto;padding:20px}
+    h1{font-size:clamp(26px,3.5vw,38px);margin:6px 0 8px}
+    p.lead{color:var(--muted);margin:0 0 18px}
+
+    /* Contact layout */
+    .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+    @media (max-width:920px){ .grid{grid-template-columns:1fr; } }
+
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .card.pad{padding:18px}
+
+    /* Info list */
+    .info{display:grid;gap:12px;margin:10px 0 6px}
+    .info a.link{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:999px;border:1px solid var(--gold);background:#000;color:var(--gold);width:max-content}
+    .info a.link.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#111;border:0}
+
+    /* Map placeholder (you can swap to a real embed later) */
+    .map{height:260px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:
+      linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.55)),
+      url('https://images.unsplash.com/photo-1505764706515-aa95265c5abc?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;background-position:center;display:grid;place-items:center;color:#ddd}
+
+    /* Form */
+    form{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+    form .full{grid-column:1/-1}
+    label{font-size:13px;color:var(--muted)}
+    input,select,textarea{
+      width:100%;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
+      background:#0f0f0f;color:var(--text);padding:0 12px
+    }
+    textarea{height:130px;padding:12px;resize:vertical}
+    .hint{font-size:12px;color:var(--muted)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--gold);font-weight:800;letter-spacing:.3px}
+    .btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#111;border:0}
+    .btn.dark{background:#000;color:var(--gold)}
+
+    /* Divider */
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:640px){ .split{grid-template-columns:1fr} }
+
+    /* Success banner (front-end only) */
+    .success{display:none;margin-top:12px;padding:12px;border-radius:12px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#b7f7c2}
+    .success.show{display:block}
+
+/* Fancy date & time */
+.date-btn {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid var(--gold);
+  background: linear-gradient(135deg,var(--gold),var(--gold2));
+  color: #111;
+  font-weight: 700;
+  letter-spacing: .3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.slots {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+@media (max-width:640px){ .slots{ grid-template-columns:repeat(3,1fr); } }
+
+.slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  border-radius: 999px;
+  padding: 0 10px;
+  background: #000;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  transition: transform .02s ease;
+}
+.slot:hover { transform: translateY(-1px); }
+.slot.active {
+  background: linear-gradient(135deg,var(--gold),var(--gold2));
+  color: #111;
+  border-color: transparent;
+}
+
+
+/* Time slots grid */
+.slots{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:10px;
+}
+@media (max-width:640px){ .slots{ grid-template-columns:repeat(3,1fr); } }
+.slot{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:42px; border-radius:999px; padding:0 10px;
+  background:#000; border:1px solid var(--gold); color:var(--gold);
+  font-weight:700; cursor:pointer; user-select:none;
+  transition:transform .02s ease;
+}
+.slot:hover{ transform:translateY(-1px); }
+.slot.active{ background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#111; border-color:transparent; }
+
+/* Summary pill */
+.choice{
+  margin-top:10px; font-size:13px; color:var(--muted);
+}
+.choice strong{ color:var(--gold); }
+
+
+
+  </style>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" />
+<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js"></script>
+
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">Following Sky</div>
+      <nav class="links">
+        <a href="index.html">Home</a>
+        <a href="properties.html">Properties</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Contact</h1>
+    <p class="lead">We reply quickly. Book a meeting or send us a message — we’ll guide you all the way.</p>
+
+    <section class="grid">
+      <!-- Left: form -->
+      <div class="card pad">
+        <h2 style="margin:0 0 8px;font-size:22px">Send us a message</h2>
+        <form action="https://formsubmit.co/forsitmedia@gmail.com" method="POST">
+  <div>
+    <label for="first">First name</label>
+    <input id="first" name="first" type="text" placeholder="Your first name" required>
+  </div>
+  <div>
+    <label for="last">Last name</label>
+    <input id="last" name="last" type="text" placeholder="Your last name" required>
+  </div>
+
+  <div>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" placeholder="you@example.com" required>
+  </div>
+  <div>
+    <label for="phone">Phone (optional)</label>
+    <input id="phone" name="phone" type="tel" placeholder="+351 ...">
+  </div>
+
+  <div class="full">
+    <label for="reason">Reason (optional)</label>
+    <select id="reason" name="reason">
+      <option value="">Choose…</option>
+      <option>Book a viewing</option>
+      <option>Selling a property</option>
+      <option>Property valuation</option>
+      <option>Off-market enquiry</option>
+      <option>General enquiry</option>
+      <option>other</option>
+    </select>
+  </div>
+
+  <div class="full">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Tell us a bit about what you need…"></textarea>
+    <p class="hint">Tip: coming from a property? It’ll auto-fill below.</p>
+  </div>
+
+  <!-- Quick meeting booking (optional) -->
+<div class="full">
+  <h3 style="margin:8px 0 6px;font-size:18px">Book a meeting (optional)</h3>
+  <div class="split">
+    <div>
+      <label for="meetDate">Preferred date</label>
+      <input type="text" id="meetDate" name="meetDate" placeholder="Select a date" readonly>
+    </div>
+    <div>
+      <label for="meetTime">Preferred time</label>
+      <select id="meetTime" name="meetTime">
+        <option value="">Select a time</option>
+      </select>
+    </div>
+  </div>
+  <div style="margin-top:8px" class="hint">In-person at our Lisbon office or video call — you choose.</div>
+</div>
+
+  <!-- FormSubmit options -->
+  <input type="hidden" name="_subject" value="New Contact / Meeting — Following Sky">
+  <input type="hidden" name="_template" value="table">
+  <!-- If you test locally with Live Server on port 5500, keep this URL.
+       If your port is different, change it to your actual local URL. -->
+  <input type="hidden" name="_next" value="http://127.0.0.1:5500/thanks.html">
+  <input type="hidden" name="_autoresponse" value="Thanks! We received your request and will get back to you shortly.">
+  <!-- Honeypot for spam -->
+  <input type="text" name="_honey" style="display:none">
+
+  <div class="actions full">
+    <button class="btn gold" type="submit">Send</button>
+    <a class="btn dark" href="mailto:info@followingsky.com?subject=Property%20Enquiry">Email us</a>
+    <a class="btn dark" href="tel:+351915902653">Call us</a>
+  </div>
+</form>
+
+      </div>
+
+      <!-- Right: direct contacts + office -->
+      <div class="card pad">
+        <h2 style="margin:0 0 8px;font-size:22px">Direct contacts</h2>
+
+        <div class="info">
+          <a class="link gold" href="mailto:followingsky.imo@gmail.com">
+            ✉️ Email — followingsky.imo@gmail.com
+          </a>
+          <a class="link" href="tel:+351915902653">
+            ☎️ Call — +351 915 902 653
+          </a>
+        </div>
+
+        <h3 style="margin:16px 0 8px;font-size:18px">Meeting office</h3>
+        <p class="hint" style="margin:0 0 10px">Bairro Alto, Lisbon — meetings by appointment</p>
+        <div class="map">
+          <div>
+            <div style="font-weight:800;margin-bottom:4px">Bairro Alto — Lisbon</div>
+            <div class="hint">We’ll share exact details upon booking</div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="info">
+          <a class="link" href="https://www.google.com/maps/search/?api=1&query=Bairro+Alto+Lisbon" target="_blank" rel="noopener">Open in Maps</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Prefill message if ?property= is present (from properties page)
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const prop = params.get('property');
+      if(!prop) return;
+      const reason = document.getElementById('reason');
+      const msg = document.getElementById('message');
+      if (reason) reason.value = "Book a viewing";
+      if (msg) {
+        msg.value = `Hello, I'm interested in "${prop}". Please contact me with more details and available viewing times.`;
+      }
+    })();
+
+    // Fake submit handler (front-end only for now)
+    function handleSubmit(){
+      const success = document.getElementById('success');
+      success.classList.add('show');
+
+      // Optional: open mail client with prefilled body (simple fallback)
+      const first = document.getElementById('first').value.trim();
+      const last  = document.getElementById('last').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const reason = document.getElementById('reason').value;
+      const message = document.getElementById('message').value.trim();
+      const date = document.getElementById('meetDate').value;
+      const time = document.getElementById('meetTime').value;
+
+      const body = encodeURIComponent(
+`Name: ${first} ${last}
+Email: ${email}
+Reason: ${reason}
+Preferred meeting: ${date || '—'} ${time || ''}
+
+Message:
+${message || '—'}
+`
+      );
+      // Uncomment next line if you want to auto-open email draft:
+      // window.location.href = 'mailto:info@followingsky.com?subject=Contact%20Request&body=' + body;
+    }
+
+// --- Calendar & time slots with Litepicker ---
+(function(){
+  const dateInput = document.getElementById('meetDate');
+  const timeSelect = document.getElementById('meetTime');
+
+  const lunchTimes = ["10:00", "11:30", "14:00", "15:30"];
+  const eveningTimes = ["17:00", "18:30", "19:30", "20:00"];
+
+  function updateTimeOptions() {
+    const selectedDate = new Date(dateInput.value);
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const isToday = selectedDate.getTime() === today.getTime();
+    const now = new Date();
+
+    timeSelect.innerHTML = `<option value="">Select a time</option>`;
+    if (!dateInput.value) return;
+
+    function addGroup(label, times){
+      const group = document.createElement('optgroup');
+      group.label = label;
+      times.forEach(t=>{
+        const [h,m] = t.split(":").map(Number);
+        const slot = new Date(selectedDate);
+        slot.setHours(h,m);
+        if (!isToday || slot > now){
+          const opt = document.createElement('option');
+          opt.value = t;
+          opt.textContent = t;
+          group.appendChild(opt);
+        }
+      });
+      if (group.children.length > 0) timeSelect.appendChild(group);
+    }
+
+    addGroup("Morning & Afternoon", lunchTimes);
+    addGroup("Evening", eveningTimes);
+  }
+
+  const picker = new Litepicker({
+    element: dateInput,
+    format: 'YYYY-MM-DD',
+    minDate: new Date().toISOString().split('T')[0],
+    setup: (picker) => {
+      picker.on('selected', (date) => {
+        dateInput.value = date.format('YYYY-MM-DD');
+        updateTimeOptions();
+      });
+    }
+  });
+})();
+
+
+  </script>
+
+</body>
+</html>

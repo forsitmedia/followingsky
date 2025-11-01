@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Following Sky — Houses</title>
+  <meta name="description" content="Vertical property posts with video first, photos after, tap to enlarge into a centered 4:5 viewer."/>
+
+<link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png?v=4">
+<link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png?v=4">
+<link rel="apple-touch-icon" href="icon/apple-touch-icon.png?v=4">
+<link rel="manifest" href="site.webmanifest?v=4">
+<link rel="shortcut icon" href="favicon.ico?v=4">
+
+  <style>
+    :root{
+      --bg:#0b0b0b; --ink:#f5f5f5; --muted:#b6b6b6; --line:rgba(255,255,255,.08);
+      --gold:#d4af37; --gold2:#f4c542; --card:#121212; --accent:#1a1a1a;
+      --radius:16px; --shadow:0 10px 30px rgba(0,0,0,.35); --maxw:1100px;
+      --ar:4/5;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Helvetica,Arial}
+    a{color:inherit;text-decoration:none}
+    img,video{display:block;width:100%;height:100%;object-fit:cover}
+
+    header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    .nav{max-width:var(--maxw);margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+    .brand{font-weight:800;letter-spacing:.3px}
+    .links a{margin-left:16px;opacity:.9}.links a:hover{opacity:1}
+
+    main{max-width:var(--maxw);margin:auto;padding:18px 20px 40px}
+    h1{font-size:clamp(26px,3.6vw,38px);margin:8px 0 4px}
+    p.lead{color:var(--muted);margin:0 0 18px}
+
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media (max-width:860px){.grid{grid-template-columns:1fr}}
+
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+
+    .media{position:relative;background:#000;aspect-ratio:var(--ar);overflow:hidden;cursor:zoom-in}
+    .slide{position:absolute;inset:0;opacity:0;transition:opacity .25s ease}
+    .slide.active{opacity:1}
+    .slide video{aspect-ratio:inherit}
+
+    .arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--gold);background:rgba(0,0,0,.55);color:var(--gold);cursor:pointer;user-select:none;z-index:3}
+    .arrow.prev{left:10px}.arrow.next{right:10px}
+    .counter{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.6);padding:4px 10px;border-radius:999px;font-size:12px;z-index:3}
+    .price{position:absolute;left:10px;top:10px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#111;font-weight:900;border-radius:999px;padding:6px 10px;box-shadow:0 6px 20px rgba(212,175,55,.25);z-index:3}
+
+    .body{padding:14px 14px 16px}
+    .title{margin:0 0 6px;font-weight:800}
+    .loc{margin:0 0 8px;color:var(--muted);font-size:.95rem}
+    .meta{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 10px}
+    .chip{border:1px solid var(--line);background:var(--accent);padding:6px 10px;border-radius:999px;font-size:.9rem}
+    .desc{color:#dbdbdb;line-height:1.5;margin:0 0 10px}
+    .mapRow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0 0}
+    .btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--gold);font-weight:700}
+    .btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#111;border:0}
+    .btn.dark{background:#000;color:var(--gold)}
+
+    .lightbox{position:fixed;inset:0;z-index:100;display:none;background:rgba(0,0,0,.92)}
+    .lightbox.open{display:block}
+
+    .lb-media{
+      position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
+      height:min(92vh, 1000px);
+      aspect-ratio:var(--ar);
+      width:auto;
+      background:#000;border-radius:18px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 24px 80px rgba(0,0,0,.65);
+    }
+
+    .lightbox .slide{position:absolute;inset:0;opacity:0;transition:opacity .2s ease}
+    .lightbox .slide.active{opacity:1}
+    .lightbox img,.lightbox video{width:100%;height:100%;object-fit:cover;background:#000}
+
+    .lb-counter{
+      position:absolute;left:12px;top:12px;z-index:102;
+      background:rgba(0,0,0,.65);color:#fff;border:1px solid rgba(255,255,255,.4);
+      border-radius:999px;padding:6px 12px;font-weight:800
+    }
+    .lb-arrow{
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:48px;height:48px;border-radius:999px;display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.85);background:rgba(0,0,0,.55);color:#fff;font-size:24px;font-weight:900;cursor:pointer;z-index:104; /* ADDED: higher z-index */
+      box-shadow:0 6px 24px rgba(0,0,0,.6);                                 /* ADDED: make visible over video */
+      pointer-events:auto;                                                   /* ADDED */
+    }
+    .lb-prev{left:10px}
+    .lb-next{right:10px}
+
+    .lb-close{
+      position:fixed;top:16px;right:16px;z-index:105;
+      background:#fff;color:#000;border:0;cursor:pointer;
+      width:48px;height:48px;border-radius:999px;display:grid;place-items:center;
+      font-size:22px;font-weight:900;box-shadow:0 10px 30px rgba(0,0,0,.5)
+    }
+
+    .lb-body{
+      position:fixed;left:0;right:0;bottom:10px;z-index:101;
+      max-width:var(--maxw);margin:0 auto;padding:0 16px;
+      display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center
+    }
+    .lb-body .chip{background:rgba(0,0,0,.6);border-color:rgba(255,255,255,.35)}
+
+    /* --- MEDIA AREA (repeat to preserve your styles) --- */
+    .media{ position:relative; width:100%; aspect-ratio: 4 / 5; overflow:hidden; border-radius: var(--radius); background:#000; }
+    .slide{ position:absolute; inset:0; margin:0; opacity:0; transition:opacity .25s ease; }
+    .slide.active{ opacity:1 }
+    .slide img,.slide video{ display:block; width:100%; height:100%; object-fit:cover; object-position:center center; background:#000; }
+    .slide video{ aspect-ratio: inherit }
+    .arrows{ pointer-events:none }
+    .arrow{ pointer-events:auto; position:absolute; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; display:grid; place-items:center; border:1px solid var(--gold); background:rgba(0,0,0,.5); color:var(--gold); cursor:pointer; user-select:none; }
+    .arrow.prev{ left:10px }
+    .arrow.next{ right:10px }
+    .counter{ position:absolute; right:10px; bottom:10px; background:rgba(0,0,0,.55); padding:4px 8px; border-radius:999px; font-size:12px; }
+    .price{ position:absolute; left:10px; top:10px; background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#111; font-weight:900; border-radius:999px; padding:6px 10px; box-shadow:0 6px 20px rgba(212,175,55,.25); }
+
+    /* ADDED: play/pause button styles (card + lightbox) */
+   /* Glassy play/pause button */
+.vid-toggle{
+  position:absolute; left:10px; bottom:10px; z-index:4;
+  width:40px; height:40px; border-radius:12px;
+
+  /* glassmorphism */
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.28);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+
+  display:grid; place-items:center; cursor:pointer; user-select:none;
+
+  color:#fff; font-weight:800; font-size:18px; line-height:1;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.18),     /* soft top highlight */
+    0 8px 22px rgba(0,0,0,.35);              /* lift from media */
+  transition:
+    transform .15s ease,
+    background .15s ease,
+    box-shadow .15s ease,
+    border-color .15s ease;
+}
+.vid-toggle:hover{
+  background: rgba(255,255,255,.16);
+  border-color: rgba(255,255,255,.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.22),
+    0 10px 26px rgba(0,0,0,.4);
+}
+.vid-toggle:active{ transform: scale(.97) }
+
+/* ensure same placement inside the lightbox */
+.lightbox .vid-toggle{ left:12px; bottom:12px; z-index:105 }
+
+
+    /* ADDED: ensure arrows are big/visible on phones */
+    @media (max-width: 640px){
+      .lb-arrow{ width:56px; height:56px; font-size:28px; }
+      .lb-prev{ left:12px } .lb-next{ right:12px }
+      .lb-counter{ left:10px; top:10px }
+    }
+
+    /* Ensure the lightbox frame is the stacking context */
+.lb-media{ position:fixed; z-index: 101; }
+
+/* Slides stay below controls */
+.lightbox .slide{ z-index: 10; }
+
+/* Arrows always on top and easier to see/tap on video */
+.lb-arrow{
+  z-index: 2000;                        /* above the video */
+  width:56px; height:56px;              /* larger touch target on phones */
+  border:1px solid rgba(255,255,255,.9);
+  background:rgba(0,0,0,.55);
+  box-shadow:0 10px 28px rgba(0,0,0,.65);
+}
+.lb-arrow::after{                        /* subtle halo so they don’t disappear */
+  content:""; position:absolute; inset:-14px; border-radius:999px;
+  background:radial-gradient(closest-side, rgba(0,0,0,.45), transparent);
+  z-index:-1;
+}
+
+/* Respect phone safe areas (iOS notch etc.) */
+.lb-prev{ left: max(12px, env(safe-area-inset-left)); }
+.lb-next{ right: max(12px, env(safe-area-inset-right)); }
+.lb-close{
+  right: max(16px, env(safe-area-inset-right));
+  top:   max(16px, env(safe-area-inset-top));
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">Following Sky</div>
+      <nav class="links">
+        <a href="index.html">Home</a>
+        <a href="properties.html">Properties</a> 
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Properties</h1>
+    <p class="lead">Tap a post to open a centered 4:5 viewer. Video is first, then photos. Use arrows or swipe. Press the big “X” to exit.</p>
+
+    <section id="list" class="grid" aria-live="polite">
+      <!-- ===== Copy this <article> for each property ===== -->
+      <article class="card">
+        <div class="media"
+             data-title="Apartment Salitre T2"
+             data-location="Principe Real, Lisbon"
+             data-highlights="2 bed, 1 bath, 95 m², Elevator"
+             data-description="Bright T2 refurbished in Salitre. High ceilings, custom carpentry and a calm street near Avenida metro."
+             data-address="R. do Salitre, Lisboa"
+             data-map="https://maps.google.com/?q=R.%20do%20Salitre%2C%20Lisboa">
+          <div class="price">€3,200/mo</div>
+
+          <!-- VIDEO first -->
+          <figure class="slide active">
+            <video playsinline muted autoplay loop preload="metadata"
+                   poster="./images/properties/salitre-t2/cover.jpg">
+              <source src="./images /properties/photo victor cordon/video cordon no sharon.mp4" type="video/mp4">
+            </video>
+          </figure>
+          <!-- PHOTOS -->
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Living room" src="images /properties/photo victor cordon/1.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Bedroom"    src="./images /properties/photo victor cordon/2.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen"    src="./images /properties/photo victor cordon/3.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen"    src="./images /properties/photo victor cordon/4.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen"    src="./images /properties/photo victor cordon/5.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen"    src="./images /properties/photo victor cordon/6.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen"    src="./images /properties/photo victor cordon/8.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen"    src="./images /properties/photo victor cordon/9.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen"    src="./images /properties/photo victor cordon/10.jpg"></figure>
+          <button class="arrow prev" aria-label="Previous">‹</button>
+          <button class="arrow next" aria-label="Next">›</button>
+          <div class="counter">1 / 5</div>
+        </div>
+
+        <div class="body">
+          <h3 class="title">Apartment Salitre T2</h3>
+          <p class="loc">Principe Real, Lisbon</p>
+          <div class="meta">
+            <span class="chip">2 bed</span><span class="chip">1 bath</span><span class="chip">95 m²</span><span class="chip">Elevator</span>
+          </div>
+          <p class="desc">Bright T2 refurbished in Salitre. High ceilings, custom carpentry and a calm street near Avenida metro.</p>
+          <div class="mapRow">
+            <span class="chip">R. do Salitre, Lisboa</span>
+            <a class="btn dark" target="_blank" rel="noopener" href="https://maps.google.com/?q=R.%20do%20Salitre%2C%20Lisboa">Open map</a>
+          </div>
+        </div>
+      </article>
+      <!-- ===== /Copy block ===== -->
+
+      <!-- (Your other articles unchanged)… -->
+      <article class="card">
+        <div class="media"
+             data-title="Apartment Salitre T2"
+             data-location="Principe Real, Lisbon"
+             data-highlights="2 bed, 1 bath, 95 m², Elevator"
+             data-description="Bright T2 refurbished in Salitre. High ceilings, custom carpentry and a calm street near Avenida metro."
+             data-address="R. do Salitre, Lisboa"
+             data-map="https://maps.google.com/?q=R.%20do%20Salitre%2C%20Lisboa">
+          <div class="price">€3,200/mo</div>
+
+          <figure class="slide active">
+            <video playsinline muted autoplay loop preload="metadata"
+                   poster="./images/properties/salitre-t2/cover.jpg">
+              <source src="./images /properties/photo cascais short rental/video rental.mp4" type="video/mp4">
+            </video>
+          </figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Living room" src="images /properties/photo victor cordon/1.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Bedroom"    src="./images /properties/photo victor cordon/2.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen"    src="./images /properties/photo victor cordon/3.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen"    src="./images /properties/photo victor cordon/4.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen"    src="./images /properties/photo victor cordon/5.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen"    src="./images /properties/photo victor cordon/6.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen"    src="./images /properties/photo victor cordon/8.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen"    src="./images /properties/photo victor cordon/9.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen"    src="./images /properties/photo victor cordon/10.jpg"></figure>
+          <button class="arrow prev" aria-label="Previous">‹</button>
+          <button class="arrow next" aria-label="Next">›</button>
+          <div class="counter">1 / 5</div>
+        </div>
+
+        <div class="body">
+          <h3 class="title">Apartment Salitre T2</h3>
+          <p class="loc">Principe Real, Lisbon</p>
+          <div class="meta">
+            <span class="chip">2 bed</span><span class="chip">1 bath</span><span class="chip">95 m²</span><span class="chip">Elevator</span>
+          </div>
+          <p class="desc">Bright T2 refurbished in Salitre. High ceilings, custom carpentry and a calm street near Avenida metro.</p>
+          <div class="mapRow">
+            <span class="chip">R. do Salitre, Lisboa</span>
+            <a class="btn dark" target="_blank" rel="noopener" href="https://maps.google.com/?q=R.%20do%20Salitre%2C%20Lisboa">Open map</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Example 2 -->
+      <article class="card">
+        <div class="media"
+             data-title="Apartment Salitre T4"
+             data-location="Avenida, Lisbon"
+             data-highlights="4 bed, 3 bath, 210 m², Pool & sauna"
+             data-description="Expansive T4 with pool access and sauna. Sunlit social area and designer kitchen."
+             data-address="Av. da Liberdade, Lisboa"
+             data-map="https://maps.google.com/?q=Av.%20da%20Liberdade%2C%20Lisboa">
+          <div class="price">€6,800/mo</div>
+          <figure class="slide active">
+            <video playsinline muted autoplay loop preload="metadata"
+                   poster="./images/properties/salitre-t4/cover.jpg">
+              <source src="./video/salitre-t4.mp4" type="video/mp4">
+            </video>
+          </figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Living"  src="./images/properties/salitre-t4/living.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Kitchen" src="./images/properties/salitre-t4/kitchen.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Suite"   src="./images/properties/salitre-t4/suite.jpg"></figure>
+          <figure class="slide"><img loading="lazy" decoding="async" alt="Pool"    src="./images/properties/salitre-t4/pool.jpg"></figure>
+
+          <button class="arrow prev" aria-label="Previous">‹</button>
+          <button class="arrow next" aria-label="Next">›</button>
+          <div class="counter">1 / 5</div>
+        </div>
+
+        <div class="body">
+          <h3 class="title">Apartment Salitre T4</h3>
+          <p class="loc">Avenida, Lisbon</p>
+          <div class="meta">
+            <span class="chip">4 bed</span><span class="chip">3 bath</span><span class="chip">210 m²</span><span class="chip">Pool & sauna</span>
+          </div>
+          <p class="desc">Expansive T4 with pool access and sauna. Sunlit social area and designer kitchen.</p>
+          <div class="mapRow">
+            <span class="chip">Av. da Liberdade, Lisboa</span>
+            <a class="btn dark" target="_blank" rel="noopener" href="https://maps.google.com/?q=Av.%20da%20Liberdade%2C%20Lisboa">Open map</a>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Centered 4:5 Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Property viewer">
+    <div class="lb-media">
+      <div class="lb-counter" id="lbCounter">1 / 1</div>
+      <button class="lb-arrow lb-prev" aria-label="Previous">‹</button>
+      <button class="lb-arrow lb-next" aria-label="Next">›</button>
+    </div>
+    <button class="lb-close" aria-label="Close (Esc)">✕</button>
+    <div class="lb-body" id="lbBody"></div>
+  </div>
+
+  <script>
+
+    
+    /* --- Card sliders & open viewer --- */
+    document.querySelectorAll('.card .media').forEach(media => {
+      const slides = [...media.querySelectorAll('.slide')];
+      const prev = media.querySelector('.arrow.prev');
+      const next = media.querySelector('.arrow.next');
+      const counter = media.querySelector('.counter');
+      let i = 0;
+
+      function show(n){
+        i = (n + slides.length) % slides.length;
+        slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+        counter.textContent = (i+1) + ' / ' + slides.length;
+      }
+      prev.addEventListener('click', e => { e.stopPropagation(); show(i-1); });
+      next.addEventListener('click', e => { e.stopPropagation(); show(i+1); });
+
+      // touch swipe
+      let sx = null;
+      media.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, {passive:true});
+      media.addEventListener('touchend', e => {
+        if(sx==null) return;
+        const dx = e.changedTouches[0].clientX - sx;
+        if(Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
+        sx = null;
+      }, {passive:true});
+
+      /* ADDED: add a play/pause button onto any video slide (in-card) */
+      slides.forEach((slide) => {
+        const vid = slide.querySelector('video');
+        if(!vid) return;
+
+        // make sure inline videos don't capture the openLB click when toggling
+        vid.addEventListener('click', (e)=>{ e.stopPropagation(); });
+
+        // create toggle btn
+        const btn = document.createElement('button');
+        btn.className = 'vid-toggle';
+        btn.type = 'button';
+        btn.setAttribute('aria-label','Play/Pause');
+        btn.textContent = vid.paused ? '▶︎' : '❚❚';
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (vid.paused) { vid.play().catch(()=>{}); btn.textContent = '❚❚'; }
+          else { vid.pause(); btn.textContent = '▶︎'; }
+        });
+        slide.appendChild(btn);
+
+        // keep icon in sync if user pauses via native controls (in lightbox)
+        ['play','pause','ended'].forEach(ev=>{
+          vid.addEventListener(ev, ()=>{ btn.textContent = vid.paused ? '▶︎' : '❚❚'; });
+        });
+      });
+
+      media.addEventListener('click', () => openLB(media, i));
+      show(0);
+    });
+
+    /* --- Lightbox (centered 4:5) --- */
+    const lb = document.getElementById('lightbox');
+    const lbMedia = lb.querySelector('.lb-media');
+    const lbPrev = lb.querySelector('.lb-prev');
+    const lbNext = lb.querySelector('.lb-next');
+    const lbClose = lb.querySelector('.lb-close');
+    const lbCounter = document.getElementById('lbCounter');
+    const lbBody = document.getElementById('lbBody');
+
+    let lbSlides = [], lbIndex = 0;
+
+    function openLB(sourceMedia, startIndex){
+      // Clear previous
+      lbSlides.forEach(n=>n.remove()); lbSlides = [];
+      lbBody.innerHTML = '';
+
+      const srcSlides = [...sourceMedia.querySelectorAll('.slide')];
+      srcSlides.forEach((s, k) => {
+        const frame = document.createElement('div');
+        frame.className = 'slide' + (k===startIndex ? ' active' : '');
+
+        if(s.querySelector('img')){
+          const imgEl = s.querySelector('img');
+          const img = new Image();
+          img.src = imgEl.getAttribute('src');
+          img.alt = imgEl.getAttribute('alt') || '';
+          frame.appendChild(img);
+        }else if(s.querySelector('video')){
+          const src = s.querySelector('video source')?.getAttribute('src') || s.querySelector('video')?.getAttribute('src') || '';
+          const poster = s.querySelector('video').getAttribute('poster') || '';
+          const v = document.createElement('video');
+          v.controls = false; /* keep our custom button visible */
+          v.playsInline = true; v.poster = poster; v.src = src;
+          v.muted = true; if(k===startIndex){ v.autoplay = true; }
+          frame.appendChild(v);
+
+          // ADDED: play/pause button inside lightbox too
+          const btn = document.createElement('button');
+          btn.className = 'vid-toggle';
+          btn.type = 'button';
+          btn.setAttribute('aria-label','Play/Pause');
+          btn.textContent = v.paused ? '▶︎' : '❚❚';
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (v.paused) { v.play().catch(()=>{}); btn.textContent = '❚❚'; }
+            else { v.pause(); btn.textContent = '▶︎'; }
+          });
+          frame.appendChild(btn);
+
+          // keep icon synced if user triggers play/pause by keyboard/etc.
+          ['play','pause','ended'].forEach(ev=>{
+            v.addEventListener(ev, ()=>{ btn.textContent = v.paused ? '▶︎' : '❚❚'; });
+          });
+        }
+        lbMedia.appendChild(frame);
+        lbSlides.push(frame);
+      });
+
+      // Details
+      const m = sourceMedia;
+      lbBody.innerHTML = `
+        <span class="chip" style="font-weight:800">${m.dataset.title||''}</span>
+        <span class="chip">${m.dataset.location||''}</span>
+        ${ (m.dataset.highlights||'').split(',').map(t=>t.trim()).filter(Boolean).map(h=>`<span class="chip">${h}</span>`).join('') }
+        ${ m.dataset.address ? `<span class="chip">${m.dataset.address}</span>` : '' }
+        ${ m.dataset.map ? `<a class="btn gold" href="${m.dataset.map}" target="_blank" rel="noopener">Open in Maps</a>` : '' }
+      `;
+
+      lbIndex = startIndex || 0;
+      lbCounter.textContent = `${lbIndex+1} / ${lbSlides.length}`;
+      document.body.style.overflow = 'hidden';
+      lb.classList.add('open');
+    }
+
+    function lbShow(n){
+      lbIndex = (n + lbSlides.length) % lbSlides.length;
+      lbSlides.forEach((s,k)=>{
+        s.classList.toggle('active', k===lbIndex);
+        const vid = s.querySelector('video');
+        if(vid){ if(k===lbIndex){ try{vid.play()}catch{} } else { vid.pause(); } }
+      });
+      lbCounter.textContent = `${lbIndex+1} / ${lbSlides.length}`;
+    }
+
+    lbPrev.addEventListener('click', (e)=>{ e.stopPropagation(); lbShow(lbIndex-1); });
+    lbNext.addEventListener('click', (e)=>{ e.stopPropagation(); lbShow(lbIndex+1); });
+    lbClose.addEventListener('click', ()=>{
+      lb.classList.remove('open'); document.body.style.overflow='';
+      lbSlides.forEach(n=>n.remove()); lbSlides=[];
+    });
+
+    // click backdrop to close (outside the centered frame)
+    lb.addEventListener('click', e=>{ 
+      const frame = lbMedia.getBoundingClientRect();
+      if(e.clientX < frame.left || e.clientX > frame.right || e.clientY < frame.top || e.clientY > frame.bottom){
+        lbClose.click();
+      }
+    });
+
+    // keyboard
+    window.addEventListener('keydown', e=>{
+      if(!lb.classList.contains('open')) return;
+      if(e.key==='Escape') lbClose.click();
+      if(e.key==='ArrowRight') lbNext.click();
+      if(e.key==='ArrowLeft') lbPrev.click();
+    });
+  </script>
+</body>
+</html>
