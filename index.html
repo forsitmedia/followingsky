@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Following Sky — Luxury Real Estate</title>
+  <meta name="description" content="Following Sky — curated luxury properties. Explore homes by location, meet Sharon, and get in touch." />
+
+<link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png?v=4">
+<link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png?v=4">
+<link rel="apple-touch-icon" href="icon/apple-touch-icon.png?v=4">
+<link rel="manifest" href="site.webmanifest?v=4">
+<link rel="shortcut icon" href="favicon.ico?v=4">
+
+
+  <style>
+    :root{
+      --bg:#0b0b0b;        /* deep black */
+      --text:#f5f5f5;      /* soft white */
+      --muted:#b3b3b3;     /* gray */
+      --gold:#d4af37;      /* gold */
+      --gold-2:#f4c542;    /* lighter gold */
+      --card:#121212;      /* dark card */
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Helvetica,Arial}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--maxw);margin-inline:auto;padding:20px}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between}
+    .brand{font-weight:800;letter-spacing:.5px}
+    nav a{margin-left:16px;opacity:.9}
+    nav a:hover{opacity:1}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--gold);font-weight:700;letter-spacing:.3px}
+    .btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#111}
+    .btn.dark{background:#000;border-color:var(--gold);color:var(--gold)}
+
+    /* Hero Video */
+    .hero{position:relative;min-height:80vh;display:grid;place-items:center;isolation:isolate}
+    .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.75));z-index:-1}
+    .hero .center{display:grid;place-items:center;text-align:center;padding:20px}
+    .hero h1{font-size:clamp(28px,5vw,56px);margin:0 0 10px}
+    .hero p{margin:0 0 18px;color:var(--muted)}
+
+ /* ABOUT — equal height on desktop, clean stack on phones */
+.about{
+  display:grid;
+  grid-template-columns: 1fr 1fr;   /* text | photo */
+  gap:20px;
+  align-items:stretch;              /* make both columns same height */
+}
+
+/* Text card fills the column height */
+.about .card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:var(--radius);
+  padding:22px;
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+/* Photo column matches the card height on desktop */
+.about .portrait{
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  height:100%;
+}
+.about .portrait img{
+  width:100%;
+  height:100%;            /* match card height */
+  object-fit:cover;       /* fill without distortion */
+  object-position: 40% 20%; /* tweak focal point if face is cropped */
+}
+
+/* Phones: stack to prevent extreme cropping */
+@media (max-width: 640px){
+  .about{ grid-template-columns:1fr; }
+  .about .portrait{
+    height:auto;
+    aspect-ratio: 3 / 4; /* taller box so face fits */
+  }
+  .about .portrait img{
+    height:100%;
+    object-position: center 12%; /* shift crop upward to show face */
+  }
+}
+
+/* Desktop: limit About height */
+@media (min-width: 1024px){
+  .about{
+    align-items: start;       /* stop forcing equal height */
+  }
+  .about .card,
+  .about .portrait{
+    max-height: 600px;        /* adjust until it feels right */
+  }
+  .about .portrait img{
+    height: 100%;
+    object-fit: cover;
+    object-position: center top; /* keep face visible */
+  }
+}
+
+/* Service cards */
+.service-card {
+  background: linear-gradient(135deg,var(--gold),var(--gold-2));
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid rgba(0,0,0,.25);
+}
+.service-card h3 {
+  color: #111; /* black title */
+  margin: 0 0 6px;
+}
+.service-card p {
+  margin: 0;
+  color: #fff; /* white text */
+}
+
+
+
+    /* Locations */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:960px){.grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.grid{grid-template-columns:1fr}}
+    .tile{position:relative;border-radius:14px;overflow:hidden;background:#000;border:1px solid rgba(255,255,255,.08)}
+    .tile img{width:100%;height:200px;object-fit:cover;filter:saturate(1.1)}
+    .tile a{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:space-between;padding:12px;background:linear-gradient(180deg, transparent, rgba(0,0,0,.7));font-weight:700}
+    .tile .badge{background:rgba(0,0,0,.6);border:1px solid var(--gold);color:var(--gold);padding:6px 10px;border-radius:999px;font-size:12px}
+
+    /* Reviews */
+    .carousel{display:flex;gap:14px;overflow:auto;padding-bottom:6px;scroll-snap-type:x mandatory}
+    .review{min-width:280px;max-width:320px;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;scroll-snap-align:start;box-shadow:var(--shadow)}
+    .stars{color:var(--gold);font-size:18px}
+
+    /* Contact */
+    form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    form .full{grid-column:1/-1}
+    label{font-size:13px;color:var(--muted)}
+    input,select,textarea{width:100%;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#0f0f0f;color:var(--text);padding:0 12px}
+    textarea{height:110px;padding:12px;resize:vertical}
+    .note{font-size:12px;color:var(--muted)}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.08);margin-top:30px}
+    .foot{display:flex;align-items:center;justify-content:space-between;padding:18px 0;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">Following Sky</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="properties.html">Properties</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO with background video -->
+  <section class="hero" aria-label="Featured properties video">
+    <!-- Replace src with your local video: assets/video/hero.mp4 -->
+    <video autoplay muted loop playsinline poster="assets/images/hero-poster.jpg">
+      <source src="video/houses.mp4" type="video/mp4" />
+      <!-- Optional webm for better compression -->
+      <source src="assets/video/hero.webm" type="video/webm" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="center">
+      <h1>Curated Luxury Homes</h1>
+      <p>Exclusive listings, private tours, and a seamless buying experience.</p>
+      <a class="btn gold" href="properties.html">See properties</a>
+    </div>
+  </section>
+
+  <main>
+    <!-- ABOUT SHARON -->
+    <section class="section container" id="about">
+      <h2>About Sharon</h2>
+      <div class="about">
+        <div class="card">
+          <p>
+            Following Sky Real Estate was founded by Sharon Portal, a visionary leader with over 20 years of experience in the real estate industry. <br> <p> 
+            With a true passion for connecting people to exceptional properties and a deep understanding of the market, Sharon drives the agency’s continued success. <p> Having built an international career across Africa, Morocco, India, and Europe, she brings a global perspective and an unmatched network of contacts to Following Sky. <p> Under Sharon’s leadership, Following Sky Real Estate is fully committed to exceeding client expectations by delivering  personalized, transparent, and high-quality service at every stage of the investment journey.
+          </p>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn gold" href="properties.html">Browse listings</a>
+            <a class="btn dark" href="#contact">Get in touch</a>
+          </div>
+        </div>
+        <div class="portrait">
+          <!-- Replace with your photo: assets/images/sharon.jpg -->
+          <img src="images /sharon.jpg" alt="Portrait of Sharon, real‑estate specialist" />
+        </div>
+      </div>
+    </section>
+
+    <!-- PROPERTIES BY LOCATION -->
+    <section class="section container" id="locations">
+      <h2>Properties by Location</h2>
+      <p class="note">Tap a location to view properties (we'll auto‑filter on the next page later).</p>
+      <div class="grid">
+        <!-- Each tile can pass a query param like ?location=Chiado -->
+        <div class="tile">
+          <img src="images /chiado.jpg" alt="Chiado district skyline" />
+          <a href="properties.html?location=Chiado">
+            <span>Chiado</span>
+            <span class="badge">Explore →</span>
+          </a>
+        </div>
+        <div class="tile">
+          <img src="images /alfama.jpg" alt="Alfama streets" />
+          <a href="properties.html?location=Alfama">
+            <span>Alfama</span>
+            <span class="badge">Explore →</span>
+          </a>
+        </div>
+        <div class="tile">
+          <img src="images /parque.jpg" alt="Parque das Nações waterfront" />
+          <a href="properties.html?location=Parque%20das%20Na%C3%A7%C3%B5es">
+            <span>Parque das Nações</span>
+            <span class="badge">Explore →</span>
+          </a>
+        </div>
+        <div class="tile">
+          <img src="images /cascais.jpg" alt="Cascais marina" />
+          <a href="properties.html?location=Cascais">
+            <span>Cascais</span>
+            <span class="badge">Explore →</span>
+          </a>
+        </div>
+        <div class="tile">
+          <img src="images /estoril.jpg" alt="Estoril coastline" />
+          <a href="properties.html?location=Estoril">
+            <span>Estoril</span>
+            <span class="badge">Explore →</span>
+          </a>
+        </div>
+        <div class="tile">
+          <img src="images /belem.jpg" alt="Belém tower at sunset" />
+          <a href="properties.html?location=Bel%C3%A9m">
+            <span>Belém</span>
+            <span class="badge">Explore →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+        <!-- OUR SERVICES -->
+    <section class="section container" id="services">
+      <h2>How We Can Help You</h2>
+      <div class="grid">
+        <!-- Investment Consulting -->
+        <div class="service-card">
+          <h3>Investment Consulting</h3>
+          <p>Detailed market analysis, tailored strategies, and portfolio management to maximize returns with confidence.</p>
+        </div>
+
+        <!-- Luxury Commercial Properties -->
+        <div class="service-card">
+          <h3>Commercial Luxury</h3>
+          <p>Exclusive offices, prestige retail spaces, and boutique hotels that combine prime locations with lasting value.</p>
+        </div>
+
+        <!-- Golden Visa Support -->
+        <div class="service-card">
+          <h3>Golden Visa & Residency</h3>
+          <p>Specialized guidance, legal support, and continuous assistance to secure residency and investment success in Portugal.</p>
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+    <!-- REVIEWS (scrollable cards) -->
+    <section class="section container" id="reviews">
+      <h2>Client Reviews</h2>
+      <div class="carousel" aria-label="Client testimonials">
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>“Sharon secured our dream penthouse in three days. Discreet, fast, exceptional.”</p>
+          <p class="note">— A. Pereira</p>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>“Every viewing was curated. We never felt our time was wasted.”</p>
+          <p class="note">— M. Costa</p>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>“From offer to closing, the process was seamless and private.”</p>
+          <p class="note">— M. & R. Duarte</p>
+        </article>
+        <article class="review">
+          <div class="stars">★★★★★</div>
+          <p>“Market knowledge + impeccable taste. Highly recommend.”</p>
+          <p class="note">— M. Silva</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section class="section container" id="contact">
+      <h2>Contact</h2>
+      <p class="note">Leave your details and reason for contact. We’ll get back quickly.</p>
+    <form action="https://formsubmit.co/forsitmedia@gmail.com" method="POST">
+  <div>
+    <label for="name">Full name</label>
+    <input id="name" name="name" type="text" placeholder="Your name" required>
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" placeholder="you@example.com" required>
+  </div>
+  <div class="full">
+    <label for="reason">Reason (optional)</label>
+    <select id="reason" name="reason">
+      <option value="">Choose…</option>
+      <option>Book a viewing</option>
+      <option>Selling a property</option>
+      <option>Property valuation</option>
+      <option>General enquiry</option>
+      <option>other</option>
+    </select>
+  </div>
+  <div class="full">
+    <label for="message">Message (optional)</label>
+    <textarea id="message" name="message" placeholder="Write a brief note…"></textarea>
+  </div>
+
+  <!-- FormSubmit options -->
+  <input type="hidden" name="_subject" value="New Appointment Request — Following Sky">
+  <input type="hidden" name="_template" value="table">
+  <!-- Change the URL if your local port is different -->
+  <input type="hidden" name="_next" value="http://127.0.0.1:5500/thanks.html">
+  <input type="hidden" name="_autoresponse" value="Thanks! We received your request and will get back to you shortly.">
+  <!-- Honeypot for spam -->
+  <input type="text" name="_honey" style="display:none">
+
+  <div class="full" style="display:flex;gap:10px;flex-wrap:wrap">
+    <button class="btn gold" type="submit">Send</button>
+    <a class="btn dark" href="mailto:followingsky.imo@gmail.com?subject=Property%20Enquiry">Email us</a>
+    <a class="btn dark" href="tel:+351 913 278 814">Call us</a>
+  </div>
+</form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <small>© <span id="year"></span> Following Sky</small>
+      <small class="note">Privacy • Terms</small>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile: nothing heavy yet; small helpers only.
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+
+
+<script>
+  // Prefill contact form if ?property= is present
+  (function(){
+    const params = new URLSearchParams(location.search);
+    const prop = params.get('property');
+    if(!prop) return;
+    // Jump to contact section
+    const contact = document.getElementById('contact');
+    if (contact) contact.scrollIntoView({behavior:'smooth'});
+
+    // Fill fields if they exist
+    const reason = document.getElementById('reason');
+    const msg = document.getElementById('message');
+    if (reason) reason.value = "Book a viewing";
+    if (msg) {
+      msg.value = `Hello, I'm interested in "${prop}". Please contact me with more details and available viewing times.`;
+    }
+  })();
+</script>
+
+
+
+
+
+</body>
+</html>
