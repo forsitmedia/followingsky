@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Riverfront Duplex Lisbon — Following Sky</title>
+  <meta name="description" content="River-view duplex in Chiado, Lisbon — Following Sky Real Estate." />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png?v=4">
+  <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png?v=4">
+  <link rel="apple-touch-icon" href="icon/apple-touch-icon.png?v=4">
+  <link rel="manifest" href="site.webmanifest?v=4">
+  <link rel="shortcut icon" href="favicon.ico?v=4">
+
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --text:#f5f5f5;
+      --muted:#b3b3b3;
+      --gold:#d4af37;
+      --gold-2:#f4c542;
+      --card:#121212;
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --maxw:1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Helvetica,Arial}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--maxw);margin-inline:auto;padding:20px}
+
+    /* ===== NAVBAR (same as your site) ===== */
+    header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(0,0,0,.5);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between}
+    .brand{font-weight:800;letter-spacing:.5px}
+    nav a{margin-left:16px;opacity:.9}
+    nav a:hover{opacity:1}
+    nav a.active{color:var(--gold-2);opacity:1}
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      gap:8px;height:44px;padding:0 18px;border-radius:999px;
+      border:1px solid var(--gold);
+      font-weight:900;letter-spacing:.3px;
+      transition:transform .12s ease, opacity .12s ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#111;border:0}
+    .btn.dark{background:#000;color:var(--gold)}
+    .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.18)}
+    .btn.small{height:40px;padding:0 14px;font-size:13px}
+
+    main{padding:20px 0 54px}
+
+    /* ===== TOP SUMMARY STRIP ===== */
+    .top{
+      display:grid;
+      grid-template-columns:1.25fr .75fr;
+      gap:16px;
+      align-items:stretch;
+      margin-top:8px;
+    }
+    @media (max-width:900px){ .top{grid-template-columns:1fr} }
+
+    .panel{
+      background:linear-gradient(180deg, rgba(212,175,55,.09), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:18px;
+    }
+
+    .kicker{
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(245,245,245,.72);
+    }
+
+    .title{
+      margin:8px 0 8px;
+      font-size:clamp(26px,3.1vw,40px);
+      line-height:1.05;
+      font-weight:950;
+      letter-spacing:-.02em;
+    }
+    .location{
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin:0 0 14px;
+    }
+
+    .priceBox{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      text-align:right;
+    }
+    .price{
+      font-size:28px;
+      font-weight:950;
+      color:var(--gold-2);
+      letter-spacing:.3px;
+    }
+    .ref{
+      color:rgba(245,245,245,.6);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .iconRow{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:14px;
+    }
+    @media (max-width:680px){ .iconRow{grid-template-columns:repeat(2,1fr)} }
+
+    .iconCard{
+      background:rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:14px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .ic{
+      width:42px;height:42px;border-radius:14px;
+      display:grid;place-items:center;
+      border:1px solid rgba(244,197,66,.45);
+      background:rgba(212,175,55,.08);
+      color:var(--gold-2);
+      flex:0 0 auto;
+      font-weight:900;
+    }
+    .iconCard strong{display:block}
+    .iconCard span{display:block;color:var(--muted);font-size:12px;margin-top:1px}
+
+    /* ===== CAROUSEL ===== */
+    .galleryWrap{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:16px;
+      align-items:start;
+    }
+    @media (max-width:980px){ .galleryWrap{grid-template-columns:1fr} }
+
+    .carousel{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    .carouselTop{
+      position:relative;
+      background:#000;
+      height:min(560px, 70vh);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px;
+    }
+
+    .slide{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      pointer-events:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px;
+      transition:opacity .18s ease;
+    }
+    .slide.active{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    /* IMPORTANT: "contain" = your vertical photos are fully visible */
+    .slide img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      border-radius:16px;
+      background:#000;
+    }
+
+    .controls{
+      position:absolute;
+      inset:0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      pointer-events:none;
+      padding:0 10px;
+    }
+    .arrow{
+      pointer-events:auto;
+      width:46px;height:46px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.45);
+      color:#fff;
+      cursor:pointer;
+      display:grid;place-items:center;
+      font-size:22px;
+      backdrop-filter:blur(6px);
+    }
+    .arrow:hover{border-color:rgba(244,197,66,.55)}
+
+    .counter{
+      position:absolute;
+      bottom:12px;right:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.18);
+      color:rgba(245,245,245,.86);
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      backdrop-filter:blur(6px);
+    }
+
+    .thumbs{
+      display:flex;
+      gap:10px;
+      padding:12px;
+      overflow:auto;
+      border-top:1px solid rgba(255,255,255,.06);
+      background:rgba(0,0,0,.25);
+    }
+    .thumb{
+      width:86px;
+      height:110px;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      flex:0 0 auto;
+      cursor:pointer;
+      position:relative;
+      opacity:.92;
+    }
+    .thumb:hover{opacity:1}
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:saturate(1.05);
+    }
+    .thumb.active{
+      border-color:rgba(244,197,66,.8);
+    }
+    .thumb.video::after{
+      content:"▶";
+      position:absolute;
+      inset:auto auto 8px 8px;
+      background:rgba(0,0,0,.6);
+      border:1px solid rgba(255,255,255,.18);
+      width:32px;height:32px;border-radius:999px;
+      display:grid;place-items:center;
+      color:#fff;
+      font-size:14px;
+      backdrop-filter:blur(6px);
+    }
+
+    /* Video slide (poster) */
+    .videoPoster{
+      width:100%;
+      height:100%;
+      border-radius:16px;
+      background:#000;
+      display:grid;
+      place-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .videoPoster img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:brightness(.85) saturate(1.1);
+    }
+    .playBig{
+      position:absolute;
+      width:74px;height:74px;border-radius:999px;
+      display:grid;place-items:center;
+      background:rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.18);
+      backdrop-filter:blur(6px);
+      font-size:28px;
+      color:#fff;
+      cursor:pointer;
+    }
+    .playBig:hover{border-color:rgba(244,197,66,.55)}
+    .videoHint{
+      position:absolute;
+      bottom:12px;left:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.18);
+      font-size:12px;
+      color:rgba(245,245,245,.86);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      backdrop-filter:blur(6px);
+    }
+
+    /* ===== RIGHT SIDE DETAILS ===== */
+    .side{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+
+    .sectionTitle{
+      margin:0 0 8px;
+      font-size:13px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(245,245,245,.7);
+    }
+
+    .text{
+      color:rgba(245,245,245,.88);
+      line-height:1.75;
+      font-size:14.5px;
+    }
+
+    .grid2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    @media (max-width:520px){ .grid2{grid-template-columns:1fr} }
+
+    .pill{
+      padding:10px 12px;
+      border-radius:16px;
+      background:rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.08);
+      color:rgba(245,245,245,.9);
+      font-size:13px;
+    }
+    .pill strong{color:var(--gold-2)}
+
+    /* ===== VIDEO MODAL ===== */
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.72);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:999;
+    }
+    .modal.open{display:flex}
+    .modalBox{
+      width:min(980px, 100%);
+      background:#000;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,.6);
+      position:relative;
+    }
+    .modalTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 14px;
+      background:rgba(255,255,255,.03);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .modalTop strong{letter-spacing:.08em;text-transform:uppercase;font-size:12px;color:rgba(245,245,245,.78)}
+    .close{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.35);
+      color:#fff;
+      width:40px;height:40px;border-radius:999px;
+      display:grid;place-items:center;
+      font-size:18px;
+    }
+    .frame{
+      width:100%;
+      aspect-ratio:16/9;
+      background:#000;
+    }
+    .frame iframe{
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    /* Footer */
+    footer{border-top:1px solid rgba(255,255,255,.08);margin-top:30px}
+    .foot{display:flex;align-items:center;justify-content:space-between;padding:18px 0;color:var(--muted)}
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="container nav">
+      <div class="brand">Following Sky</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="properties.html" class="active">Properties</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- TOP SUMMARY -->
+    <section class="top">
+
+      <div class="panel">
+        <div class="kicker">Photos · Discover Following Sky</div>
+        <h1 class="title">Riverfront Duplex Lisbon | Contemporary 3-bedroom Duplex in Chiado</h1>
+
+        <p class="location">
+          📍 Rua Vítor Cordon, Chiado · Lisbon, Portugal
+        </p>
+
+        <div class="iconRow">
+          <div class="iconCard">
+            <div class="ic">🛏</div>
+            <div>
+              <strong>3 Bedrooms</strong>
+              <span>T3</span>
+            </div>
+          </div>
+
+          <div class="iconCard">
+            <div class="ic">🚿</div>
+            <div>
+              <strong>2 Bathrooms</strong>
+              <span>Premium finishes</span>
+            </div>
+          </div>
+
+          <div class="iconCard">
+            <div class="ic">㎡</div>
+            <div>
+              <strong>171 m²</strong>
+              <span>Total area</span>
+            </div>
+          </div>
+
+          <div class="iconCard">
+            <div class="ic">🅿</div>
+            <div>
+              <strong>Parking</strong>
+              <span>Included</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel priceBox">
+        <div>
+          <div class="price">€2,790,000</div>
+          <div class="ref">Ref. Rua Vítor Cordon · Chiado</div>
+        </div>
+
+        <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap">
+          <a class="btn ghost" href="properties.html">← Back</a>
+          <a class="btn gold" href="contact.html?property=Riverfront%20Duplex">Contact Sharon</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- GALLERY + DETAILS -->
+    <section class="galleryWrap">
+
+      <!-- CAROUSEL -->
+      <div class="carousel" aria-label="Property photo carousel">
+        <div class="carouselTop" id="carouselTop">
+
+          <!-- ✅ SLIDES (EDIT IMAGE PATHS HERE) -->
+          <div class="slide active" data-type="image">
+            <img src="images/properties/photo-victor-cordon/1.jpg" alt="Living room with river view" />
+          </div>
+          <div class="slide" data-type="image">
+            <img src="images/properties/photo-victor-cordon/2.jpg" alt="Living room detail" />
+          </div>
+          <div class="slide" data-type="image">
+            <img src="images/properties/photo-victor-cordon/3.jpg" alt="Kitchen and dining area" />
+          </div>
+          <div class="slide" data-type="image">
+            <img src="images/properties/photo-victor-cordon/4.jpg" alt="Master suite" />
+          </div>
+          <div class="slide" data-type="image">
+            <img src="images/properties/photo-victor-cordon/5.jpg" alt="Bedroom" />
+          </div>
+          <div class="slide" data-type="image">
+            <img src="images/properties/photo-victor-cordon/6.jpg" alt="Bathroom" />
+          </div>
+          <div class="slide" data-type="image">
+            <img src="images/properties/photo-victor-cordon/7.jpg" alt="Balcony view" />
+          </div>
+
+          <!-- ✅ LAST SLIDE = YOUTUBE VIDEO -->
+          <div class="slide" data-type="video" data-youtube="https://www.youtube.com/watch?v=YOUR_VIDEO_ID">
+            <div class="videoPoster">
+              <!-- Poster image (optional) -->
+              <img src="images/properties/photo-victor-cordon/poster.jpg" alt="Video tour poster">
+              <button class="playBig" type="button" aria-label="Play YouTube tour">▶</button>
+              <div class="videoHint">Video tour</div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="arrow" id="prevBtn" type="button" aria-label="Previous">‹</button>
+            <button class="arrow" id="nextBtn" type="button" aria-label="Next">›</button>
+          </div>
+
+          <div class="counter" id="counter">1 / 8</div>
+        </div>
+
+        <!-- THUMBNAILS -->
+        <div class="thumbs" id="thumbs" aria-label="Photo thumbnails">
+          <button class="thumb active" type="button" data-index="0" aria-label="Photo 1">
+            <img src="images/properties/photo-victor-cordon/1.jpg" alt="">
+          </button>
+          <button class="thumb" type="button" data-index="1" aria-label="Photo 2">
+            <img src="images/properties/photo-victor-cordon/2.jpg" alt="">
+          </button>
+          <button class="thumb" type="button" data-index="2" aria-label="Photo 3">
+            <img src="images/properties/photo-victor-cordon/3.jpg" alt="">
+          </button>
+          <button class="thumb" type="button" data-index="3" aria-label="Photo 4">
+            <img src="images/properties/photo-victor-cordon/4.jpg" alt="">
+          </button>
+          <button class="thumb" type="button" data-index="4" aria-label="Photo 5">
+            <img src="images/properties/photo-victor-cordon/5.jpg" alt="">
+          </button>
+          <button class="thumb" type="button" data-index="5" aria-label="Photo 6">
+            <img src="images/properties/photo-victor-cordon/6.jpg" alt="">
+          </button>
+          <button class="thumb" type="button" data-index="6" aria-label="Photo 7">
+            <img src="images/properties/photo-victor-cordon/7.jpg" alt="">
+          </button>
+
+          <button class="thumb video" type="button" data-index="7" aria-label="Video tour">
+            <img src="images/properties/photo-victor-cordon/poster.jpg" alt="">
+          </button>
+        </div>
+      </div>
+
+      <!-- DETAILS PANEL -->
+      <div class="side">
+
+        <div class="panel">
+          <h3 class="sectionTitle">Property description</h3>
+          <div class="text">
+            Discover the charm of this magnificent duplex located on the top floor of a recently renovated
+            18th-century Pombaline building, on the prestigious Rua Vítor Cordon, in the heart of Chiado.
+            With a total area of <strong>170.97 m²</strong>, this apartment offers a unique and sophisticated living experience.
+            <br><br>
+            The spacious living room offers stunning views over the Tagus River, while the contemporary kitchen
+            is equipped with top-of-the-range appliances — ideal for culinary lovers.
+            <br><br>
+            The master suite with integrated closet and the two spacious bedrooms guarantee comfort and privacy.
+            Bathrooms are elegantly decorated with premium finishes.
+            Enjoy the terrace and balcony, perfect for moments of relaxation.
+            <br><br>
+            This exclusive gated community with doorman offers security and tranquility, close to renowned restaurants,
+            exclusive shops, and emblematic cultural sites.
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3 class="sectionTitle">Highlights</h3>
+          <div class="grid2">
+            <div class="pill"><strong>171 m²</strong> area bruta</div>
+            <div class="pill"><strong>T3</strong> · 3 bedrooms</div>
+            <div class="pill"><strong>2</strong> bathrooms</div>
+            <div class="pill"><strong>Balcony</strong> + terrace</div>
+            <div class="pill"><strong>Parking</strong> included</div>
+            <div class="pill"><strong>5th floor</strong> · elevator</div>
+            <div class="pill"><strong>Air conditioning</strong></div>
+            <div class="pill"><strong>Heat/Cool pump</strong></div>
+            <div class="pill"><strong>Built-in wardrobes</strong></div>
+            <div class="pill"><strong>Recently renovated</strong></div>
+          </div>
+
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn gold" href="contact.html?property=Riverfront%20Duplex">Enquire now</a>
+            <a class="btn dark" href="properties.html">See more properties</a>
+          </div>
+
+          <div style="margin-top:12px;color:rgba(245,245,245,.65);font-size:13px;line-height:1.6">
+            Se tens alguma dúvida, lembra-te que podes falar com <strong>Sharon Portal</strong> por chat.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container foot">
+      <small>© <span id="year"></span> Following Sky</small>
+      <small>Privacy • Terms</small>
+    </div>
+  </footer>
+
+  <!-- VIDEO MODAL -->
+  <div class="modal" id="videoModal" aria-hidden="true">
+    <div class="modalBox" role="dialog" aria-modal="true" aria-label="YouTube video tour">
+      <div class="modalTop">
+        <strong>Video Tour</strong>
+        <button class="close" id="closeModal" type="button" aria-label="Close">✕</button>
+      </div>
+      <div class="frame" id="videoFrame"></div>
+    </div>
+  </div>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ===== Carousel Logic =====
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const thumbs = Array.from(document.querySelectorAll('.thumb'));
+    const counter = document.getElementById('counter');
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let current = 0;
+
+    function setActive(index){
+      current = (index + slides.length) % slides.length;
+
+      slides.forEach((s,i)=>s.classList.toggle('active', i===current));
+      thumbs.forEach((t,i)=>t.classList.toggle('active', i===current));
+
+      counter.textContent = (current + 1) + " / " + slides.length;
+    }
+
+    prevBtn.addEventListener('click', ()=>setActive(current - 1));
+    nextBtn.addEventListener('click', ()=>setActive(current + 1));
+
+    thumbs.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const idx = Number(btn.dataset.index);
+        setActive(idx);
+      });
+    });
+
+    // ===== YouTube Modal =====
+    const modal = document.getElementById('videoModal');
+    const closeModal = document.getElementById('closeModal');
+    const videoFrame = document.getElementById('videoFrame');
+
+    function youtubeToEmbed(url){
+      // accepts: https://www.youtube.com/watch?v=ID  OR  https://youtu.be/ID
+      try{
+        const u = new URL(url);
+        if(u.hostname.includes("youtu.be")){
+          return u.pathname.replace("/", "");
+        }
+        if(u.hostname.includes("youtube.com")){
+          return u.searchParams.get("v");
+        }
+      }catch(e){}
+      return null;
+    }
+
+    function openVideo(){
+      const activeSlide = slides[current];
+      const yt = activeSlide.dataset.youtube;
+      const id = youtubeToEmbed(yt);
+
+      if(!id){
+        alert("Please add a valid YouTube link in the last slide: data-youtube=\"...\"");
+        return;
+      }
+
+      videoFrame.innerHTML = `
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0"
+          title="YouTube video tour"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      `;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+    }
+
+    function closeVideo(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      videoFrame.innerHTML = "";
+    }
+
+    // open video when the last slide play button is clicked
+    document.querySelectorAll('.playBig').forEach(btn=>{
+      btn.addEventListener('click', openVideo);
+    });
+
+    // close modal
+    closeModal.addEventListener('click', closeVideo);
+    modal.addEventListener('click', (e)=>{
+      if(e.target === modal) closeVideo();
+    });
+
+    // If user reaches last slide, clicking the main area also opens video
+    document.getElementById('carouselTop').addEventListener('dblclick', ()=>{
+      if(slides[current].dataset.type === "video") openVideo();
+    });
+  </script>
+
+</body>
+</html>
