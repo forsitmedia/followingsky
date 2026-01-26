@@ -148,7 +148,9 @@ nav a:hover{opacity:1}
 }
 .choice strong{ color:var(--gold); }
 
-
+/* Footer (same as index) */
+    footer{border-top:1px solid rgba(255,255,255,.08);margin-top:30px}
+    .foot{display:flex;align-items:center;justify-content:space-between;padding:18px 0;color:var(--muted)}
 
   </style>
 </head>
@@ -280,7 +282,16 @@ nav a:hover{opacity:1}
     </section>
   </main>
 
+<footer>
+    <div class="container foot">
+      <small>© <span id="year"></span> Following Sky</small>
+      <small class="note">Privacy • Terms</small>
+    </div>
+  </footer>
   <script>
+    // Update year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+ 
     // Prefill message if ?property= is present (from properties page)
     (function(){
       const params = new URLSearchParams(location.search);
