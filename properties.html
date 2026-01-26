@@ -238,8 +238,12 @@
     <div class="headline">
       <div>
         <h1>Curated Properties</h1>
-        <p>Tap any property to open its detail page. All visuals and typography match the rest of the website.</p>
+        <p>Explore our curated selection of premium properties in Portugal.
+Tap any property to view details, photos, and investment highlights.</p>
         <div id="filterBar" class="filterbar">
+          <div id="emptyState" style="display:none; margin-top:14px; color:#b3b3b3;">
+  No properties found for this location yet.
+</div>
           Showing location: <strong id="filterName"></strong> · <a href="properties.html">Clear filter</a>
         </div>
       </div>
@@ -258,7 +262,7 @@
       -->
 
       <!-- PROPERTY 1 -->
-      <article class="prop-card" data-location="Lisbon">
+      <article class="prop-card" data-location="Chiado">
         <a class="prop-link" href="property-riverfront-duplex.html" aria-label="Open Riverfront Duplex Lisbon">
           <div class="media">
             <img src="images/properties/photo-victor-cordon/1.jpg" alt="Riverfront Duplex Lisbon property image">
@@ -323,7 +327,7 @@
       </article>
 
       <!-- PROPERTY 3 -->
-      <article class="prop-card" data-location="Lisbon">
+      <article class="prop-card" data-location="Lapa">
         <a class="prop-link" href="property-shindler-2.html" aria-label="Open Shindler 2 Palace">
           <div class="media">
             <img src="images/properties/photo-palacio-shindler-2/1.jpg" alt="Estoril villa interior">
@@ -356,7 +360,7 @@
       </article>
 
        <!-- PROPERTY 4 -->
-      <article class="prop-card" data-location="Lisbon">
+      <article class="prop-card" data-location="Lapa">
         <a class="prop-link" href="property-shindler-1.html" aria-label="Open Schindler 1 Palace">
           <div class="media">
             <img src="images/properties/photo-palacio-shindler-1/1.jpg" alt="Open Schindler 1 Palace interior">
@@ -389,7 +393,7 @@
       </article>
 
       <!-- PROPERTY 5 -->
-      <article class="prop-card" data-location="Lisbon">
+      <article class="prop-card" data-location="Alfama">
         <a class="prop-link" href="property-alfama-guest-house.html" aria-label="Open Alfama Guest House">
           <div class="media">
             <img src="images/properties/alfama-guest-house/9.jpg" alt="Alfama Guest House interior">
@@ -473,25 +477,38 @@
 
     // OPTIONAL: filter by location coming from index tiles:
     // properties.html?location=Chiado
-    (function(){
-      const params = new URLSearchParams(location.search);
-      const locationFilter = params.get('location');
-      if(!locationFilter) return;
+    (function () {
+  const params = new URLSearchParams(window.location.search);
+  const locationFilter = params.get("location");
+  if (!locationFilter) return;
 
-      const filterBar = document.getElementById('filterBar');
-      const filterName = document.getElementById('filterName');
-      filterName.textContent = locationFilter;
+  const wanted = locationFilter.trim().toLowerCase();
 
-      filterBar.style.display = "block";
+  const cards = Array.from(document.querySelectorAll(".prop-card"));
+  let shown = 0;
 
-      const cards = document.querySelectorAll('.prop-card');
-      cards.forEach(card => {
-        const loc = (card.dataset.location || "").toLowerCase();
-        if(loc !== locationFilter.toLowerCase()){
-          card.style.display = "none";
-        }
-      });
-    })();
+  cards.forEach((card) => {
+    const locAttr = (card.dataset.location || "").toLowerCase();
+    const textLoc = (card.querySelector(".media-sub")?.textContent || "").toLowerCase();
+
+    // ✅ match if location matches OR if the subtitle contains the location text
+    const match = locAttr === wanted || textLoc.includes(wanted);
+
+    card.style.display = match ? "" : "none";
+    if (match) shown++;
+  });
+
+  // Show the filter bar
+  const filterBar = document.getElementById("filterBar");
+  const filterName = document.getElementById("filterName");
+  if (filterName) filterName.textContent = locationFilter;
+  if (filterBar) filterBar.style.display = "block";
+
+  // Optional: show an empty-state if nothing matches
+  const empty = document.getElementById("emptyState");
+  if (empty) empty.style.display = shown === 0 ? "block" : "none";
+})();
+
   </script>
 
 </body>
