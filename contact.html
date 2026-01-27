@@ -183,6 +183,28 @@ nav a:hover{opacity:1}
   fill:currentColor;
 }
 
+/* ✅ Footer: center + breathe on iPhone */
+@media (max-width: 520px){
+  .foot{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    padding: 22px 0;
+  }
+
+  .foot > *{
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+
+  .footer-social{
+    justify-content: center;
+  }
+}
+
   </style>
 </head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" />
