@@ -4,588 +4,208 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Following Sky — Villa in Cascais (For Rent)</title>
-  <meta name="description" content="Villa for rent in Cascais. 4 bedrooms, 300 m², pool + garden, parking space. Surrounded by nature, functional semi-modern design. €3000/month." />
+  <meta name="description" content="Villa for rent in Cascais. 4 bedrooms, 300 m², pool + garden, parking space. Surrounded by nature, functional semi-modern design. €3,000/month." />
 
- <!-- ===================== -->
-<!-- FAVICON SETUP (GITHUB PAGES SAFE) -->
-<!-- ===================== -->
+<!-- FAVICON SETUP -->
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="favicon-48x48.png" sizes="48x48">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b0b0b;
-      --text:#f5f5f5;
-      --muted:#b3b3b3;
-      --gold:#d4af37;
-      --gold-2:#f4c542;
-      --card:#121212;
-      --card2:#0f0f0f;
-      --radius:16px;
-      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --bg:#0a0a0a;
+      --text:#f0f0ee;
+      --muted:#777777;
+      --gold:#c9a84c;
+      --gold-2:#ddb96a;
+      --card:#141414;
+      --card2:#111111;
+      --radius:6px;
+      --shadow:0 8px 40px rgba(0,0,0,.5);
       --maxw:1100px;
-      --line:rgba(255,255,255,.08);
+      --line:rgba(255,255,255,.06);
     }
-
     *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--text);
-      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Helvetica,Arial}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif}
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
     button{font-family:inherit}
-
     .container{max-width:var(--maxw);margin-inline:auto;padding:20px}
 
     /* ===== NAVBAR ===== */
-    header{
-      position:sticky;top:0;z-index:50;
-      background:rgba(0,0,0,.5);
-      backdrop-filter:blur(8px);
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
+    header{position:sticky;top:0;z-index:10001;background:transparent;backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.05);}
     .nav{display:flex;align-items:center;justify-content:space-between}
-    .brand{font-weight:800;letter-spacing:.5px}
-    nav a{margin-left:16px;opacity:.9}
+    .brand{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text);}
+    nav a{margin-left:28px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:400;opacity:.6;transition:opacity .2s;}
     nav a:hover{opacity:1}
-    nav a.active{color:var(--gold-2);opacity:1}
+    nav a.active{opacity:1;color:var(--gold-2);}
 
-    /* ===== Buttons ===== */
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      gap:8px;height:44px;padding:0 18px;border-radius:999px;
-      border:1px solid var(--gold);
-      font-weight:800;letter-spacing:.3px;
-      background:transparent;color:var(--text);
-      cursor:pointer;
-    }
-    .btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#111;border:0}
-    .btn.dark{background:#000;color:var(--gold)}
-    .btn.small{height:40px;padding:0 14px;font-weight:800;font-size:13px}
+    /* ===== BUTTONS ===== */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 24px;border-radius:3px;border:1px solid rgba(201,168,76,.4);font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;background:transparent;color:var(--text);cursor:pointer;transition:border-color .2s ease,background .2s ease,color .2s ease;}
+    .btn:hover{border-color:var(--gold);color:var(--gold);}
+    .btn.gold{background:var(--gold);color:#0a0a0a;border-color:var(--gold);font-weight:500;}
+    .btn.gold:hover{background:var(--gold-2);border-color:var(--gold-2);color:#0a0a0a;}
+    .btn.dark{background:transparent;color:var(--gold);border-color:rgba(201,168,76,.35);}
+    .btn.small{height:36px;padding:0 16px;font-size:11px}
 
-    /* ===== FULL WIDTH HERO CAROUSEL (3 visible) ===== */
-    .heroWrap{
-      width:100vw;
-      margin-left:calc(50% - 50vw);
-      border-bottom:1px solid rgba(255,255,255,.06);
-      position:relative;
-      background:#000;
-    }
-
-    .heroCarousel{
-      position:relative;
-      height:clamp(260px,54vh,520px);
-      overflow:hidden;
-    }
-
-    .heroTrack{
-      height:100%;
-      display:flex;
-      overflow-x:auto;
-      scroll-snap-type:x mandatory;
-      scroll-behavior:smooth;
-      scrollbar-width:none;
-    }
+    /* ===== HERO CAROUSEL ===== */
+    .heroWrap{width:100vw;margin-left:calc(50% - 50vw);border-bottom:1px solid rgba(255,255,255,.06);position:relative;background:#000;}
+    .heroCarousel{position:relative;height:clamp(260px,54vh,520px);overflow:hidden;}
+    .heroTrack{height:100%;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;}
     .heroTrack::-webkit-scrollbar{display:none}
+    .heroSlide{flex:0 0 33.3333%;height:100%;scroll-snap-align:start;position:relative;border-right:1px solid rgba(255,255,255,.06);}
+    .heroSlide img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05);}
+    @media(max-width:820px){.heroSlide{flex-basis:100%}}
+    .heroArrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:40px;height:40px;border-radius:2px;border:1px solid rgba(255,255,255,.2);background:rgba(10,10,10,.6);color:#fff;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(4px);transition:border-color .2s ease,background .2s ease;}
+    .heroArrow:hover{background:rgba(10,10,10,.9);border-color:rgba(201,168,76,.5);}
+    .heroArrow.left{left:20px}
+    .heroArrow.right{right:20px}
+    .heroArrow svg{opacity:.9}
 
-    .heroSlide{
-      flex:0 0 33.3333%;
-      height:100%;
-      scroll-snap-align:start;
-      position:relative;
-      border-right:1px solid rgba(255,255,255,.06);
-    }
-    .heroSlide img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      filter:saturate(1.05);
-    }
-
-    @media (max-width:820px){
-      .heroSlide{flex-basis:100%}
-    }
-
-    .heroArrow{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      z-index:5;
-      width:48px;height:48px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(0,0,0,.45);
-      color:#fff;
-      display:grid;place-items:center;
-      cursor:pointer;
-      transition:.15s ease;
-    }
-    .heroArrow:hover{background:rgba(0,0,0,.7)}
-    .heroArrow.left{left:14px}
-    .heroArrow.right{right:14px}
-    .heroArrow svg{opacity:.95}
-
-    /* ===== MAIN INFO BLOCK ===== */
-    main{padding:18px 0 54px}
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:18px;
-    }
-
-    .kicker{
-      color:rgba(245,245,245,.65);
-      font-size:12px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      margin-bottom:10px;
-    }
-
-    .sectionTitle{
-      margin:0 0 10px;
-      font-size:13px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:rgba(245,245,245,.75);
-    }
-
-    /* ===== HERO TEXT OVERLAY ===== */
-    .heroOverlay{
-      position:relative;
-      padding:22px 0 26px;
-      background:#000;
-      border-top:1px solid rgba(255,255,255,.08);
-    }
-
-    .heroOverlayInner{
-      max-width:var(--maxw);
-      margin:0 auto;
-      padding:0 20px;
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:18px;
-    }
-
+    /* ===== HERO OVERLAY ===== */
+    .heroOverlay{position:relative;padding:36px 0 40px;background:#0e0e0e;border-top:1px solid rgba(201,168,76,.15);}
+    .heroOverlay::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.04) 0%,transparent 60%);pointer-events:none;}
+    .heroOverlayInner{max-width:var(--maxw);margin:0 auto;padding:0 20px;display:flex;align-items:flex-end;justify-content:space-between;gap:18px;}
     .heroOverlayLeft{max-width:740px}
     .heroOverlayRight{text-align:right;min-width:240px}
-
-    .heroTitleOverlay{
-      margin:10px 0 0;
-      font-size:clamp(28px,3.2vw,46px);
-      line-height:1.05;
-      letter-spacing:-.02em;
+    .heroTitleOverlay{margin:10px 0 0;font-family:'Cormorant Garamond',serif;font-size:clamp(32px,3.8vw,58px);font-weight:600;line-height:1.02;letter-spacing:-.01em;}
+    .heroMetaOverlay{margin-top:10px;display:flex;align-items:center;gap:8px;color:rgba(245,245,245,.80);font-size:14px;}
+    .heroPriceOverlay{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--gold-2);font-size:clamp(32px,3.5vw,52px);letter-spacing:.02em;line-height:1;}
+    .heroPpm2{margin-top:8px;color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase;}
+    .heroBtnsOverlay{margin-top:14px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;pointer-events:auto;}
+    .heroOverlay a.btn{pointer-events:auto}
+    @media(max-width:820px){
+      .heroOverlayInner{flex-direction:column;align-items:flex-start;}
+      .heroOverlayRight{text-align:left;width:100%;}
+      .heroBtnsOverlay{justify-content:flex-start;}
     }
 
-    .heroMetaOverlay{
-      margin-top:10px;
-      display:flex;
-      align-items:center;
-      gap:8px;
-      color:rgba(245,245,245,.80);
-      font-size:14px;
-      flex-wrap:wrap;
-    }
+    /* ===== QUICK FACTS ===== */
+    .quickFactsSection{background:#0a0a0a;border-top:none;border-bottom:none;padding:56px 0 64px;}
+    .factsRow{margin-top:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:46px;}
+    @media(max-width:920px){.factsRow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:520px){.factsRow{grid-template-columns:1fr}}
+    .fact{background:#161614;border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:20px 22px;display:flex;align-items:center;gap:16px;min-height:88px;box-shadow:0 4px 24px rgba(0,0,0,.3);color:var(--text);transition:border-color .2s ease;}
+    .fact:hover{border-color:rgba(201,168,76,.5);}
+    .factIcon{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);flex:0 0 auto;}
+    .factIcon svg{width:22px;height:22px;stroke:var(--gold-2);opacity:.9;}
+    .factLabel{font-size:10px;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px;}
+    .factValue{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;letter-spacing:.02em;color:var(--text);}
 
-    .heroPriceOverlay{
-      font-weight:950;
-      color:var(--gold-2);
-      font-size:clamp(26px,3vw,40px);
-      letter-spacing:.3px;
-    }
+    /* ===== DESCRIPTION SECTION ===== */
+    .descSection{background:transparent;border:none;padding:40px 0;}
+    .descInner{max-width:var(--maxw);margin:0 auto;padding:48px;display:grid;grid-template-columns:1.4fr 0.6fr;gap:60px;align-items:start;background:#141414;border:1px solid rgba(255,255,255,.06);}
+    @media(max-width:860px){.descInner{grid-template-columns:1fr}}
+    .sectionTitle{margin:0 0 14px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:500;}
+    .descHeadline{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);font-weight:600;line-height:1.1;letter-spacing:-.01em;margin:12px 0 24px;}
+    .descHeadline em{color:var(--gold-2);font-style:italic;}
+    .descDivider{width:48px;height:1px;background:rgba(201,168,76,.4);margin-bottom:28px;}
+    .descLeft p{color:rgba(239,239,236,.6);line-height:1.85;margin:0 0 16px;font-size:15px;font-weight:300;}
+    .descStatBlock{display:flex;flex-direction:column;gap:32px;border-left:1px solid rgba(201,168,76,.2);padding-left:28px;}
+    .descStat{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px;}
+    .descStatNum{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:600;color:var(--text);line-height:1;}
+    .descStatUnit{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold-2);}
+    .descStatLabel{width:100%;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
 
-    .heroPpm2{
-      margin-top:6px;
-      color:rgba(245,245,245,.75);
-      font-size:13px;
-      letter-spacing:.06em;
-    }
+    /* ===== MAP + HIGHLIGHTS ===== */
+    .mapHighlightSection{background:#0a0a0a;padding:80px 0;}
+    .mapHighlightInner{max-width:var(--maxw);margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+    @media(max-width:860px){.mapHighlightInner{grid-template-columns:1fr}}
+    .mapAddress{font-size:13px;color:var(--muted);margin:6px 0 16px;letter-spacing:.04em;}
+    .mapFrame{border-radius:8px;overflow:hidden;border:1px solid rgba(201,168,76,.12);}
+    .mapFrame iframe{width:100%;height:300px;border:0;display:block;filter:saturate(.9) brightness(.85);}
+    .highlightList{list-style:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:0;}
+    .highlightList li{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:14px;font-weight:300;color:rgba(239,239,236,.8);letter-spacing:.02em;}
+    .highlightList li:first-child{border-top:1px solid rgba(255,255,255,.05);}
+    .hlCheck{color:var(--gold-2);font-size:12px;}
 
-    .heroBtnsOverlay{
-      margin-top:14px;
-      display:flex;
-      gap:10px;
-      justify-content:flex-end;
-      flex-wrap:wrap;
-      pointer-events:auto;
-    }
-
-    @media (max-width:820px){
-      .heroOverlayInner{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-      .heroOverlayRight{
-        text-align:left;
-        width:100%;
-      }
-      .heroBtnsOverlay{
-        justify-content:flex-start;
-      }
-    }
-
-    /* ===== QUICK FACTS (BLACK) ===== */
-    .quickFactsSection{
-      background:#000;
-      border-top:1px solid rgba(255,255,255,.08);
-      padding:28px 0 34px;
-    }
-
-    .factsRow{
-      margin-top:16px;
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:12px;
-    }
-    @media (max-width:920px){
-      .factsRow{grid-template-columns:repeat(2,minmax(0,1fr))}
-    }
-    @media (max-width:520px){
-      .factsRow{grid-template-columns:1fr}
-    }
-
-    .fact{
-      background:linear-gradient(180deg, rgba(244,197,66,.95), rgba(212,175,55,.95));
-      border:1px solid rgba(0,0,0,.18);
-      border-radius:20px;
-      padding:16px 18px;
-      display:flex;
-      align-items:center;
-      gap:14px;
-      min-height:82px;
-      box-shadow:0 14px 32px rgba(0,0,0,.30);
-      color:#111;
-    }
-
-    .factIcon{
-      width:52px;
-      height:52px;
-      border-radius:16px;
-      display:grid;
-      place-items:center;
-      background:rgba(255,255,255,.35);
-      border:1px solid rgba(0,0,0,.18);
-      flex:0 0 auto;
-    }
-
-    .factIcon svg{
-      width:26px;
-      height:26px;
-      stroke:#111;
-      opacity:.92;
-    }
-
-    .factLabel{
-      font-size:12px;
-      color:rgba(245,245,245,.65);
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      margin-bottom:2px;
-    }
-    .factValue{
-      font-weight:900;
-      font-size:15px;
-      letter-spacing:.2px;
-    }
-
-    /* ===== DETAILS GRID ===== */
-    .detailsGrid{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns:1.3fr .7fr;
-      gap:16px;
-      align-items:stretch;
-    }
-    @media (max-width:920px){
-      .detailsGrid{grid-template-columns:1fr}
-    }
-
-    .desc p{
-      color:rgba(245,245,245,.85);
-      line-height:1.7;
-      margin:0 0 12px;
-      font-size:14.5px;
-    }
-
-    .mapCard iframe{
-      width:100%;
-      height:320px;
-      border:0;
-      border-radius:14px;
-      filter:saturate(1.05);
-    }
-
-    .mapFooter{
-      margin-top:12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    /* ===== HIGHLIGHTS ===== */
-    .highlights{
-      margin-top:18px;
-    }
-    .chips{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:10px;
-      margin-top:10px;
-    }
-    @media (max-width:720px){
-      .chips{grid-template-columns:1fr}
-    }
-    .chip{
-      background:var(--card2);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:999px;
-      padding:11px 14px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      font-size:13.5px;
-    }
-    .chip strong{
-      color:var(--gold-2);
-      letter-spacing:.2px;
+    /* ===== VIDEO SECTION ===== */
+    .videoSection{background:transparent;border:none;padding:40px 0;margin-top:0;margin-bottom:10%;}
+    .videoSection .container{background:#141414;border:1px solid rgba(255,255,255,.06);padding:48px;max-width:var(--maxw);}
+    .videoTitle{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,5vw,72px);font-weight:600;letter-spacing:-.02em;line-height:1;color:var(--text);margin:0 0 4px;}
+    .videoKicker{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:10px;}
+    .videoGrid{display:flex;gap:80px;align-items:start;justify-content:center;margin-top:40px;}
+    .videoWrap{width:300px;aspect-ratio:9/16;border-radius:8px;overflow:hidden;background:#000;border:1px solid rgba(201,168,76,.15);}
+    .videoWrap iframe{width:100%;height:100%;border:0;display:block;}
+    .videoCaption{margin-top:14px;font-size:12px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:400;}
+    @media(max-width:820px){
+      .videoGrid{flex-direction:column;align-items:center;}
+      .videoWrap{width:280px;}
     }
 
     /* ===== FULL BLEED GALLERY ===== */
-    .fullBleed{
-      width:100vw;
-      margin-left:calc(50% - 50vw);
-      margin-top:22px;
-      padding:0 18px 26px;
-    }
-
-    .galleryGrid{
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:12px;
-    }
-    @media (max-width:1100px){
-      .galleryGrid{grid-template-columns:repeat(3,minmax(0,1fr))}
-    }
-    @media (max-width:820px){
-      .galleryGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
-    }
-    @media (max-width:520px){
-      .galleryGrid{grid-template-columns:1fr}
-    }
-
-    .gItem{
-      position:relative;
-      border-radius:14px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.08);
-      background:#000;
-      cursor:pointer;
-      padding:0;
-    }
-    .gItem img{
-      width:100%;
-      height:340px;
-      object-fit:cover;
-      filter:saturate(1.04);
-      transition:transform .25s ease;
-    }
-    .gItem:hover img{transform:scale(1.02)}
-    @media (max-width:520px){
-      .gItem img{height:280px}
-    }
+    .fullBleed{width:100vw;margin-left:calc(50% - 50vw);margin-top:0;padding:80px 40px;background:#111111;border-top:1px solid rgba(255,255,255,.05);}
+    .galleryGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+    @media(max-width:1100px){.galleryGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:820px){.galleryGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:520px){.galleryGrid{grid-template-columns:1fr}}
+    .gItem{position:relative;border-radius:4px;overflow:hidden;border:none;background:#000;cursor:pointer;padding:0;}
+    .gItem img{width:100%;height:300px;object-fit:cover;filter:saturate(1.0) brightness(.95);transition:transform .4s ease,filter .4s ease;}
+    .gItem:hover img{transform:scale(1.04);filter:saturate(1.1) brightness(1.02);}
+    @media(max-width:520px){.gItem img{height:280px}}
 
     /* ===== LIGHTBOX ===== */
-    .lightbox{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.86);
-      display:none;
-      z-index:999;
-    }
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;z-index:999;}
     .lightbox.open{display:block}
-
-    .lbInner{
-      position:absolute;
-      inset:0;
-      display:grid;
-      place-items:center;
-      padding:18px;
-      z-index:1000;
-    }
-
-    .lbImg{
-      max-width:min(1100px, 94vw);
-      max-height:86vh;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 30px 90px rgba(0,0,0,.6);
-      background:#000;
-    }
-
-    .lbClose{
-      position:absolute;
-      top:18px;
-      right:18px;
-      width:46px;height:46px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(0,0,0,.45);
-      color:#fff;
-      cursor:pointer;
-      display:grid;place-items:center;
-      z-index:1002;
-    }
-
-    .lbArrow{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:50px;height:50px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(0,0,0,.45);
-      color:#fff;
-      cursor:pointer;
-      display:grid;place-items:center;
-      z-index:1002;
-    }
+    .lbInner{position:absolute;inset:0;display:grid;place-items:center;padding:18px;z-index:1000;}
+    .lbImg{max-width:min(1100px,94vw);max-height:86vh;border-radius:16px;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 90px rgba(0,0,0,.6);background:#000;}
+    .lbClose{position:absolute;top:70px;right:18px;width:46px;height:46px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.45);color:#fff;cursor:pointer;display:grid;place-items:center;z-index:1002;}
+    .lbArrow{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(0,0,0,.45);color:#fff;cursor:pointer;display:grid;place-items:center;z-index:1002;}
     .lbArrow.left{left:18px}
     .lbArrow.right{right:18px}
+    .lbCount{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font-size:13px;color:rgba(245,245,245,.8);background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.14);padding:8px 12px;border-radius:999px;z-index:1002;}
 
-    .lbCount{
-      position:absolute;
-      bottom:18px;
-      left:50%;
-      transform:translateX(-50%);
-      font-size:13px;
-      color:rgba(245,245,245,.8);
-      background:rgba(0,0,0,.45);
-      border:1px solid rgba(255,255,255,.14);
-      padding:8px 12px;
-      border-radius:999px;
-      z-index:1002;
-    }
+    /* ===== HERO ANIMATIONS ===== */
+    .heroFade{opacity:0;transform:translateY(18px);animation:heroFadeIn 1.2s ease forwards;}
+    .heroFadeRight{opacity:0;transform:translateX(18px);animation:heroFadeIn 1.2s ease forwards;}
+    @keyframes heroFadeIn{to{opacity:1;transform:translate(0)}}
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .fadeUp{opacity:0;transform:translateY(24px);transition:opacity 1.1s ease,transform 1.1s ease;}
+    .fadeUp.visible{opacity:1;transform:translateY(0);}
+    .fadeLeft{opacity:0;transform:translateX(-28px);transition:opacity 1.1s ease,transform 1.1s ease;}
+    .fadeLeft.visible{opacity:1;transform:translateX(0);}
+    .fadeRight{opacity:0;transform:translateX(28px);transition:opacity 1.1s ease,transform 1.1s ease;}
+    .fadeRight.visible{opacity:1;transform:translateX(0);}
+
+    /* ===== MOBILE MENU ===== */
+    .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:transparent;border:none;cursor:pointer;padding:4px;z-index:300;}
+    .hamburger span{display:block;width:100%;height:1px;background:var(--gold);transition:transform .4s ease,opacity .4s ease;}
+    .hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;}
+    .hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+    .menuOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;opacity:0;transition:opacity .4s ease;pointer-events:none;}
+    .menuOverlay.open{opacity:1;pointer-events:auto;}
+    .mobileMenu{position:fixed;top:0;right:0;bottom:0;width:75vw;max-width:320px;background:#0e0e0e;border-left:1px solid rgba(201,168,76,.15);z-index:250;display:flex;flex-direction:column;justify-content:center;padding:60px 40px;gap:0;transform:translateX(100%);transition:transform .5s cubic-bezier(.16,1,.3,1);pointer-events:none;}
+    .mobileMenu.open{transform:translateX(0);pointer-events:auto;}
+    .mobileMenu a{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--text);opacity:.5;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.06);transition:opacity .2s,color .2s;}
+    .mobileMenu a:first-child{border-top:1px solid rgba(255,255,255,.06);}
+    .mobileMenu a:hover{opacity:1;color:var(--gold-2);}
+    .mobileMenu a.active{opacity:1;color:var(--gold-2);}
+    @media(max-width:820px){.hamburger{display:flex}nav{display:none}.menuOverlay{display:block}}
 
     /* ===== FOOTER ===== */
-    footer{border-top:1px solid rgba(255,255,255,.08);margin-top:30px}
-    .foot{display:flex;align-items:center;justify-content:space-between;padding:18px 0;color:var(--muted)}
-
-
-    /* Footer social icons */
-.footer-social{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.footer-social a{
-  width:38px;
-  height:38px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:999px;
-  border:1px solid rgba(212,175,55,.6);
-  background:#000;
-  color:var(--gold);
-  opacity:.9;
-  transition:transform .12s ease, opacity .12s ease, border-color .12s ease;
-}
-.footer-social a:hover{
-  opacity:1;
-  transform:translateY(-1px);
-  border-color:rgba(244,197,66,.9);
-}
-.footer-social svg{
-  width:18px;
-  height:18px;
-  display:block;
-  fill:currentColor;
-}
-
-    /* ===== YOUTUBE SHORTS (9:16) SECTION ===== */
-    .videoTitle{
-      font-size: 20px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.987);
-      margin: 40px 0 18px;
+    footer{border-top:1px solid rgba(255,255,255,.05);margin-top:0;background:#0a0a0a;}
+    .foot{display:flex;align-items:center;justify-content:space-between;padding:32px 0;color:var(--muted);font-size:12px;letter-spacing:.08em;}
+    .footer-social{display:flex;align-items:center;gap:10px;}
+    .footer-social a{width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;border:1px solid rgba(212,175,55,.6);background:#000;color:var(--gold);opacity:.9;transition:transform .12s ease,opacity .12s ease,border-color .12s ease;}
+    .footer-social a:hover{opacity:1;transform:translateY(-1px);border-color:rgba(244,197,66,.9);}
+    .footer-social svg{width:18px;height:18px;display:block;fill:currentColor;}
+    @media(max-width:520px){
+      .foot{flex-direction:column;justify-content:center;align-items:center;gap:12px;text-align:center;padding:22px 0;}
+      .foot>*{width:100%;display:block;text-align:center;}
+      .footer-social{justify-content:center;}
     }
 
-    .videoGrid{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
-  justify-items: center; /* ✅ centers the video card */
-}
-
-
-    .videoCard{
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(222, 201, 201, 0.18);
-      border-radius: 18px;
-      padding: 16px;
-      box-shadow: 0 14px 34px rgba(0,0,0,.20);
-      max-width: 520px;
-    }
-
-    .videoWrap{
-      width: 100%;
-      aspect-ratio: 9 / 16;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #000;
-    }
-
-    .videoWrap iframe{
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
-    }
-
-    .videoCaption{
-      margin-top: 12px;
-      font-size: 14px;
-      color: rgb(255, 255, 255);
-      line-height: 1.35;
-    }
-
-    /* ✅ Footer: center + breathe on iPhone */
-@media (max-width: 520px){
-  .foot{
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    text-align: center;
-    padding: 22px 0;
-  }
-
-  .foot > *{
-    width: 100%;
-    display: block;
-    text-align: center;
-  }
-
-  .footer-social{
-    justify-content: center;
-  }
-}
+    h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;letter-spacing:-.01em;line-height:1.1;}
   </style>
 </head>
 
 <body>
 
-  <!-- Navbar -->
+  <!-- NAVBAR -->
   <header>
     <div class="container nav">
       <div class="brand">Following Sky</div>
@@ -594,29 +214,28 @@
         <a href="properties.html" class="active">Properties</a>
         <a href="contact.html">Contact</a>
       </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
-  <!-- FULL WIDTH TOP CAROUSEL -->
+  <!-- MOBILE MENU -->
+  <div class="menuOverlay" id="menuOverlay"></div>
+  <div class="mobileMenu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="properties.html" class="active">Properties</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- HERO CAROUSEL -->
   <section class="heroWrap" aria-label="Property photos carousel">
     <div class="heroCarousel">
       <button class="heroArrow left" type="button" aria-label="Previous photos" id="heroPrev">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-
       <div class="heroTrack" id="heroTrack">
-        <!-- ✅ TOP PREVIEW: only a few images (priority to load) -->
-        <div class="heroSlide">
-          <img
-            src="images/properties/photo-cascais-short-rental/1.jpg"
-            alt="Cascais villa photo 1"
-            fetchpriority="high"
-            decoding="async"
-          >
-        </div>
-
+        <div class="heroSlide"><img src="images/properties/photo-cascais-short-rental/1.jpg" alt="Cascais villa photo 1" fetchpriority="high" decoding="async"></div>
         <div class="heroSlide"><img src="images/properties/photo-cascais-short-rental/2.jpg" alt="Cascais villa photo 2" loading="lazy" decoding="async"></div>
         <div class="heroSlide"><img src="images/properties/photo-cascais-short-rental/3.jpg" alt="Cascais villa photo 3" loading="lazy" decoding="async"></div>
         <div class="heroSlide"><img src="images/properties/photo-cascais-short-rental/4.jpg" alt="Cascais villa photo 4" loading="lazy" decoding="async"></div>
@@ -624,58 +243,46 @@
         <div class="heroSlide"><img src="images/properties/photo-cascais-short-rental/6.jpg" alt="Cascais villa photo 6" loading="lazy" decoding="async"></div>
         <div class="heroSlide"><img src="images/properties/photo-cascais-short-rental/7.jpg" alt="Cascais villa photo 7" loading="lazy" decoding="async"></div>
       </div>
-
       <button class="heroArrow right" type="button" aria-label="Next photos" id="heroNext">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-          <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
 
-    <!-- ✅ TITLE + PRICE BAR BELOW PHOTOS (FULL WIDTH) -->
+    <!-- TITLE + PRICE BAR -->
     <div class="heroOverlay">
       <div class="heroOverlayInner">
-
         <div class="heroOverlayLeft">
-          <div class="kicker">For Rent · Cascais · Following Sky</div>
-
-          <h1 class="heroTitleOverlay">
-            Villa in Cascais — Pool, Garden & Nature
-          </h1>
-
-          <div class="heroMetaOverlay">
-            <span>📍</span>
-            <span>Rua de Birre 369 · Cascais · Portugal</span>
+          <div class="kicker heroFade" style="animation-delay:.2s">For Rent · Cascais · Following Sky</div>
+          <h1 class="heroTitleOverlay heroFade" style="animation-delay:.45s">Villa in Cascais — Pool, Garden & Nature</h1>
+          <div class="heroMetaOverlay heroFade" style="animation-delay:.7s">
+            <span>📍</span><span>Rua de Birre 369 · Cascais · Portugal</span>
           </div>
         </div>
-
         <div class="heroOverlayRight">
-          <div class="heroPriceOverlay">€3,000 / month</div>
-          <div class="heroPpm2">4 bedrooms · Pool + Garden · 300 m²</div>
-
-          <div class="heroBtnsOverlay">
+          <div class="heroPriceOverlay heroFadeRight" style="animation-delay:.6s">€3,000 / month</div>
+          <div class="heroPpm2 heroFadeRight" style="animation-delay:.75s">4 bedrooms · Pool + Garden · 300 m²</div>
+          <div class="heroBtnsOverlay heroFadeRight" style="animation-delay:.9s">
             <a class="btn dark" href="properties.html">← Back</a>
             <a class="btn gold" href="contact.html?property=Villa%20in%20Cascais%20For%20Rent">Contact Sharon</a>
           </div>
         </div>
-
       </div>
     </div>
-
   </section>
 
   <!-- QUICK FACTS -->
   <section class="quickFactsSection" aria-label="Property quick facts">
     <div class="container">
-
       <div class="factsRow" style="margin-top:0">
 
-        <div class="fact">
+        <div class="fact fadeUp" style="transition-delay:0s">
           <div class="factIcon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M3 10h18v7H3v-7Z" stroke-width="1.8"/>
-              <path d="M7 10V8a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v2" stroke-width="1.8"/>
-              <path d="M5 17v3M19 17v3" stroke-width="1.8" stroke-linecap="round"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 19V9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10"/>
+              <path d="M2 15h20"/>
+              <path d="M6 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+              <path d="M12 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+              <path d="M2 19v1M22 19v1"/>
             </svg>
           </div>
           <div>
@@ -684,11 +291,13 @@
           </div>
         </div>
 
-        <div class="fact">
+        <div class="fact fadeUp" style="transition-delay:.12s">
           <div class="factIcon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M4 4h16v16H4V4Z" stroke-width="1.8"/>
-              <path d="M8 8h8v8H8V8Z" stroke-width="1.8"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9V5a2 2 0 0 1 2-2h4"/>
+              <path d="M15 3h4a2 2 0 0 1 2 2v4"/>
+              <path d="M21 15v4a2 2 0 0 1-2 2h-4"/>
+              <path d="M9 21H5a2 2 0 0 1-2-2v-4"/>
             </svg>
           </div>
           <div>
@@ -697,11 +306,11 @@
           </div>
         </div>
 
-        <div class="fact">
+        <div class="fact fadeUp" style="transition-delay:.24s">
           <div class="factIcon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M12 3c2.8 2.2 4.5 5 4.5 7.8A4.5 4.5 0 1 1 7.5 10.8C7.5 8 9.2 5.2 12 3Z" stroke-width="1.8"/>
-              <path d="M5 20h14" stroke-width="1.8" stroke-linecap="round"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3c2.8 2.2 4.5 5 4.5 7.8A4.5 4.5 0 1 1 7.5 10.8C7.5 8 9.2 5.2 12 3Z"/>
+              <path d="M5 20h14"/>
             </svg>
           </div>
           <div>
@@ -710,198 +319,136 @@
           </div>
         </div>
 
-        <div class="fact">
+        <div class="fact fadeUp" style="transition-delay:.36s">
           <div class="factIcon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M4 16V10l8-4 8 4v6" stroke-width="1.8"/>
-              <path d="M6 16h12v4H6v-4Z" stroke-width="1.8"/>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M9 17V7h4a3 3 0 0 1 0 6H9"/>
             </svg>
           </div>
           <div>
             <div class="factLabel">Parking</div>
-            <div class="factValue">Space for cars</div>
+            <div class="factValue">Included</div>
           </div>
         </div>
 
       </div>
-
     </div>
   </section>
 
-  <main class="container">
-
-    <!-- DESCRIPTION + MAP -->
-    <section class="detailsGrid" aria-label="Description and location map">
-      <article class="card desc">
-        <h2 class="sectionTitle">Property Description</h2>
-
-        <p><strong>Villa in Cascais — Short-Term Rental Opportunity</strong></p>
-
-        <p>
-          This charming villa in Cascais offers the perfect balance between nature, comfort, and practicality.
-          Surrounded by mature trees and calm green surroundings, it’s an ideal home for those looking to enjoy
-          a peaceful lifestyle while staying close to everything Cascais has to offer.
-        </p>
-
-        <p>
-          The property is <strong>semi-modern</strong> and designed to be <strong>super functional</strong>, with generous living areas and
-          multiple rooms throughout the house. It’s a great fit for families, remote workers, or anyone looking for
-          a comfortable rental in one of Portugal’s most desirable locations.
-        </p>
-
-        <p>
-          Outdoors you’ll find a <strong>private garden</strong>, a <strong>swimming pool</strong> perfect for sunny days, and space to relax,
-          dine outside, or simply enjoy the natural surroundings. The villa also includes <strong>parking space for cars</strong>.
-        </p>
-
-        <p>
-          <strong>Monthly rent:</strong> €3,000
-        </p>
-
-        <p style="color:rgba(245,245,245,.75);margin-bottom:0">
-          If you have any questions, remember you can speak to <strong>Sharon Portal</strong> by chat.
-        </p>
-      </article>
-
-      <aside class="card mapCard">
-        <h2 class="sectionTitle">Location Map</h2>
-
-        <iframe
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=Rua%20de%20Birre%20369%20Cascais&output=embed">
-        </iframe>
-
-        <div class="mapFooter">
-          <span>📍 Rua de Birre 369 · Cascais</span>
-          <a class="btn small dark" target="_blank" rel="noopener"
-             href="https://www.google.com/maps?q=Rua%20de%20Birre%20369%20Cascais">
-            Open Maps
-          </a>
-        </div>
-      </aside>
-    </section>
-
-    <!-- HIGHLIGHTS -->
-    <section class="card highlights" aria-label="Highlights">
-      <h2 class="sectionTitle">Highlights</h2>
-
-      <div class="chips">
-        <div class="chip"><span><strong>For Rent</strong> in Cascais</span><span>✓</span></div>
-        <div class="chip"><span><strong>4 bedrooms</strong></span><span>✓</span></div>
-        <div class="chip"><span><strong>300 m²</strong> built area</span><span>✓</span></div>
-        <div class="chip"><span><strong>Pool</strong> + sun area</span><span>✓</span></div>
-        <div class="chip"><span><strong>Garden</strong> + nature</span><span>✓</span></div>
-        <div class="chip"><span><strong>Parking</strong> space available</span><span>✓</span></div>
-        <div class="chip"><span><strong>Functional layout</strong></span><span>✓</span></div>
-        <div class="chip"><span><strong>Quiet area</strong></span><span>✓</span></div>
-        <div class="chip"><span><strong>Perfect for families</strong></span><span>✓</span></div>
-        <div class="chip"><span><strong>Outdoor living</strong></span><span>✓</span></div>
-        <div class="chip"><span><strong>Natural light</strong></span><span>✓</span></div>
-        <div class="chip"><span><strong>Prime Cascais</strong> location</span><span>✓</span></div>
+  <!-- DESCRIPTION SECTION -->
+  <section class="descSection">
+    <div class="descInner">
+      <div class="descLeft fadeLeft">
+        <div class="sectionTitle">Property Description</div>
+        <h2 class="descHeadline">A charming villa<br><em>surrounded by nature.</em></h2>
+        <div class="descDivider"></div>
+        <p>This charming villa in Cascais offers the perfect balance between nature, comfort, and practicality. Surrounded by mature trees and calm green surroundings, it's an ideal home for those looking to enjoy a peaceful lifestyle while staying close to everything Cascais has to offer.</p>
+        <p>The property is semi-modern and designed to be super functional, with generous living areas and multiple rooms throughout the house. It's a great fit for families, remote workers, or anyone looking for a comfortable rental in one of Portugal's most desirable locations.</p>
+        <p>Outdoors you'll find a private garden, a swimming pool perfect for sunny days, and space to relax, dine outside, or simply enjoy the natural surroundings. The villa also includes parking space for cars.</p>
+        <p>If you have any questions, remember you can speak to <strong>Sharon Portal</strong> by chat.</p>
       </div>
-
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
-        <a class="btn gold" href="contact.html?property=Villa%20in%20Cascais%20For%20Rent">Enquire now</a>
-        <a class="btn dark" href="properties.html">See more properties</a>
-      </div>
-    </section>
-
-    <!-- ✅ VIDEO SECTION (ONLY 1 VIDEO) -->
-    <section class="videoSection" aria-label="Property videos">
-      <div class="container" style="padding:0;max-width:var(--maxw)">
-
-        <h2 class="videoTitle">Video Tour</h2>
-
-        <div class="videoGrid">
-          <div class="videoCard">
-            <div class="videoWrap">
-              <!-- ✅ Replace the video ID here with your real YouTube link -->
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/Vi8FGJLZqDc?rel=0&modestbranding=1&playsinline=1"
-                title="Villa in Cascais — Video Tour"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-              </iframe>
-            </div>
-            <div class="videoCaption">Villa in Cascais — Video Tour</div>
+      <div class="descRight fadeRight">
+        <div class="descStatBlock">
+          <div class="descStat">
+            <span class="descStatNum">300</span>
+            <span class="descStatUnit">m²</span>
+            <span class="descStatLabel">Built Area</span>
+          </div>
+          <div class="descStat">
+            <span class="descStatNum">4</span>
+            <span class="descStatUnit">bd</span>
+            <span class="descStatLabel">Bedrooms</span>
+          </div>
+          <div class="descStat">
+            <span class="descStatNum">3k</span>
+            <span class="descStatUnit">€</span>
+            <span class="descStatLabel">Per Month</span>
           </div>
         </div>
-
+        <a class="btn gold" style="margin-top:28px;width:100%;justify-content:center" href="contact.html?property=Villa%20in%20Cascais%20For%20Rent">Enquire now</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+  <!-- MAP + HIGHLIGHTS -->
+  <section class="mapHighlightSection">
+    <div class="mapHighlightInner">
+      <div class="mapBlock fadeLeft">
+        <div class="sectionTitle">Location</div>
+        <p class="mapAddress">📍 Rua de Birre 369 · Cascais</p>
+        <div class="mapFrame">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Rua%20de%20Birre%20369%20Cascais&output=embed">
+          </iframe>
+        </div>
+        <a class="btn dark" style="margin-top:16px" target="_blank" rel="noopener"
+           href="https://www.google.com/maps?q=Rua%20de%20Birre%20369%20Cascais">Open in Maps ↗</a>
+      </div>
+      <div class="highlightBlock fadeRight">
+        <div class="sectionTitle">Highlights</div>
+        <ul class="highlightList">
+          <li><span>For Rent · Cascais</span><span class="hlCheck">✓</span></li>
+          <li><span>4 bedrooms</span><span class="hlCheck">✓</span></li>
+          <li><span>300 m² built area</span><span class="hlCheck">✓</span></li>
+          <li><span>Pool + sun area</span><span class="hlCheck">✓</span></li>
+          <li><span>Garden + nature</span><span class="hlCheck">✓</span></li>
+          <li><span>Parking space available</span><span class="hlCheck">✓</span></li>
+          <li><span>Functional layout</span><span class="hlCheck">✓</span></li>
+          <li><span>Quiet area</span><span class="hlCheck">✓</span></li>
+          <li><span>Perfect for families</span><span class="hlCheck">✓</span></li>
+          <li><span>Natural light</span><span class="hlCheck">✓</span></li>
+        </ul>
+        <a class="btn dark" style="margin-top:24px" href="properties.html">← See more properties</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO SECTION -->
+  <section class="videoSection" aria-label="Property videos">
+    <div class="container">
+      <div class="videoKicker fadeUp">Following Sky</div>
+      <h2 class="videoTitle fadeUp" style="transition-delay:.15s">Video Tour</h2>
+      <div class="fadeUp" style="display:flex;align-items:center;gap:12px;margin:16px 0 0;transition-delay:.25s">
+        <div style="width:48px;height:1px;background:var(--gold)"></div>
+        <div style="width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg)"></div>
+        <div style="width:24px;height:1px;background:rgba(201,168,76,.3)"></div>
+      </div>
+      <div class="videoGrid">
+        <div class="videoCard fadeLeft" style="transition-delay:.15s">
+          <div class="videoWrap">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/Vi8FGJLZqDc?rel=0&modestbranding=1&playsinline=1"
+              title="Villa in Cascais — Video Tour"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="videoCaption">Villa in Cascais — Video Tour</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FULL BLEED GALLERY -->
   <section class="fullBleed" aria-label="Full photo gallery">
     <div class="container" style="padding:0;max-width:var(--maxw)">
-      <h2 class="sectionTitle" style="margin:0 0 12px">Photos</h2>
+      <div class="videoKicker fadeUp" style="margin-bottom:10px">Full Gallery</div>
+      <h2 class="fadeUp" style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,42px);font-weight:600;margin:0 0 32px;letter-spacing:-.01em;transition-delay:.15s">Every space, every detail.</h2>
     </div>
-
-    <!-- ✅ PERFORMANCE: thumbnails lazy-load (real lazy with IntersectionObserver) -->
     <div class="galleryGrid" id="galleryGrid">
-
-      <!-- 1 -->
-      <button class="gItem" type="button" data-src="images/properties/photo-cascais-short-rental/1.jpg" aria-label="Open photo 1">
-        <img data-src="images/properties/photo-cascais-short-rental/1.jpg" alt="Photo 1" loading="lazy" decoding="async">
-      </button>
-
-      <!-- 2 -->
-      <button class="gItem" type="button" data-src="images/properties/photo-cascais-short-rental/2.jpg" aria-label="Open photo 2">
-        <img data-src="images/properties/photo-cascais-short-rental/2.jpg" alt="Photo 2" loading="lazy" decoding="async">
-      </button>
-
-      <!-- 3 -->
-      <button class="gItem" type="button" data-src="images/properties/photo-cascais-short-rental/3.jpg" aria-label="Open photo 3">
-        <img data-src="images/properties/photo-cascais-short-rental/3.jpg" alt="Photo 3" loading="lazy" decoding="async">
-      </button>
-
-      <!-- 4 -->
-      <button class="gItem" type="button" data-src="images/properties/photo-cascais-short-rental/4.jpg" aria-label="Open photo 4">
-        <img data-src="images/properties/photo-cascais-short-rental/4.jpg" alt="Photo 4" loading="lazy" decoding="async">
-      </button>
-
-      <!-- 5 -->
-      <button class="gItem" type="button" data-src="images/properties/photo-cascais-short-rental/5.jpg" aria-label="Open photo 5">
-        <img data-src="images/properties/photo-cascais-short-rental/5.jpg" alt="Photo 5" loading="lazy" decoding="async">
-      </button>
-
-      <!-- 6 -->
-      <button class="gItem" type="button" data-src="images/properties/photo-cascais-short-rental/6.jpg" aria-label="Open photo 6">
-        <img data-src="images/properties/photo-cascais-short-rental/6.jpg" alt="Photo 6" loading="lazy" decoding="async">
-      </button>
-
-      <!-- 7 -->
-      <button class="gItem" type="button" data-src="images/properties/photo-cascais-short-rental/7.jpg" aria-label="Open photo 7">
-        <img data-src="images/properties/photo-cascais-short-rental/7.jpg" alt="Photo 7" loading="lazy" decoding="async">
-      </button>
-
-      <!-- 8 -->
-      <button class="gItem" type="button" data-src="images/properties/photo-cascais-short-rental/8.jpg" aria-label="Open photo 8">
-        <img data-src="images/properties/photo-cascais-short-rental/8.jpg" alt="Photo 8" loading="lazy" decoding="async">
-      </button>
-
-      <!-- 9 -->
-      <button class="gItem" type="button" data-src="images/properties/photo-cascais-short-rental/9.jpg" aria-label="Open photo 9">
-        <img data-src="images/properties/photo-cascais-short-rental/9.jpg" alt="Photo 9" loading="lazy" decoding="async">
-      </button>
-
-      <!-- 10 -->
-      <button class="gItem" type="button" data-src="images/properties/photo-cascais-short-rental/10.jpg" aria-label="Open photo 10">
-        <img data-src="images/properties/photo-cascais-short-rental/10.jpg" alt="Photo 10" loading="lazy" decoding="async">
-      </button>
-
-      <!-- 11 -->
-      <button class="gItem" type="button" data-src="images/properties/photo-cascais-short-rental/11.jpg" aria-label="Open photo 11">
-        <img data-src="images/properties/photo-cascais-short-rental/11.jpg" alt="Photo 11" loading="lazy" decoding="async">
-      </button>
-
-      <!-- 12 -->
-      <button class="gItem" type="button" data-src="images/properties/photo-cascais-short-rental/12.jpg" aria-label="Open photo 12">
-        <img data-src="images/properties/photo-cascais-short-rental/12.jpg" alt="Photo 12" loading="lazy" decoding="async">
-      </button>
-
+      <button class="gItem fadeUp" style="transition-delay:0s" type="button" data-src="images/properties/photo-cascais-short-rental/1.jpg" aria-label="Open photo 1"><img src="images/properties/photo-cascais-short-rental/1.jpg" alt="Photo 1" loading="lazy" decoding="async"></button>
+      <button class="gItem fadeUp" style="transition-delay:.1s" type="button" data-src="images/properties/photo-cascais-short-rental/2.jpg" aria-label="Open photo 2"><img src="images/properties/photo-cascais-short-rental/2.jpg" alt="Photo 2" loading="lazy" decoding="async"></button>
+      <button class="gItem fadeUp" style="transition-delay:.2s" type="button" data-src="images/properties/photo-cascais-short-rental/3.jpg" aria-label="Open photo 3"><img src="images/properties/photo-cascais-short-rental/3.jpg" alt="Photo 3" loading="lazy" decoding="async"></button>
+      <button class="gItem fadeUp" style="transition-delay:.3s" type="button" data-src="images/properties/photo-cascais-short-rental/4.jpg" aria-label="Open photo 4"><img src="images/properties/photo-cascais-short-rental/4.jpg" alt="Photo 4" loading="lazy" decoding="async"></button>
+      <button class="gItem fadeUp" style="transition-delay:.4s" type="button" data-src="images/properties/photo-cascais-short-rental/5.jpg" aria-label="Open photo 5"><img src="images/properties/photo-cascais-short-rental/5.jpg" alt="Photo 5" loading="lazy" decoding="async"></button>
+      <button class="gItem fadeUp" style="transition-delay:.5s" type="button" data-src="images/properties/photo-cascais-short-rental/6.jpg" aria-label="Open photo 6"><img src="images/properties/photo-cascais-short-rental/6.jpg" alt="Photo 6" loading="lazy" decoding="async"></button>
+      <button class="gItem fadeUp" style="transition-delay:.6s" type="button" data-src="images/properties/photo-cascais-short-rental/7.jpg" aria-label="Open photo 7"><img src="images/properties/photo-cascais-short-rental/7.jpg" alt="Photo 7" loading="lazy" decoding="async"></button>
+      <button class="gItem fadeUp" style="transition-delay:.7s" type="button" data-src="images/properties/photo-cascais-short-rental/8.jpg" aria-label="Open photo 8"><img src="images/properties/photo-cascais-short-rental/8.jpg" alt="Photo 8" loading="lazy" decoding="async"></button>
+      <button class="gItem fadeUp" style="transition-delay:.8s" type="button" data-src="images/properties/photo-cascais-short-rental/9.jpg" aria-label="Open photo 9"><img src="images/properties/photo-cascais-short-rental/9.jpg" alt="Photo 9" loading="lazy" decoding="async"></button>
+      <button class="gItem fadeUp" style="transition-delay:.9s" type="button" data-src="images/properties/photo-cascais-short-rental/10.jpg" aria-label="Open photo 10"><img src="images/properties/photo-cascais-short-rental/10.jpg" alt="Photo 10" loading="lazy" decoding="async"></button>
+      <button class="gItem fadeUp" style="transition-delay:1s" type="button" data-src="images/properties/photo-cascais-short-rental/11.jpg" aria-label="Open photo 11"><img src="images/properties/photo-cascais-short-rental/11.jpg" alt="Photo 11" loading="lazy" decoding="async"></button>
+      <button class="gItem fadeUp" style="transition-delay:1.1s" type="button" data-src="images/properties/photo-cascais-short-rental/12.jpg" aria-label="Open photo 12"><img src="images/properties/photo-cascais-short-rental/12.jpg" alt="Photo 12" loading="lazy" decoding="async"></button>
     </div>
   </section>
 
@@ -910,143 +457,98 @@
     <button class="lbClose" id="lbClose" type="button" aria-label="Close gallery">✕</button>
     <button class="lbArrow left" id="lbPrev" type="button" aria-label="Previous image">‹</button>
     <button class="lbArrow right" id="lbNext" type="button" aria-label="Next image">›</button>
-
-    <div class="lbInner">
-      <img class="lbImg" id="lbImg" alt="Full size property photo">
-    </div>
+    <div class="lbInner"><img class="lbImg" id="lbImg" alt="Full size property photo"></div>
     <div class="lbCount" id="lbCount">1 / 1</div>
   </div>
 
-  <footer>
-  <div class="container foot">
-    <small>© <span id="year"></span> Following Sky</small>
-
-    <!-- Social icons -->
-    <div class="footer-social" aria-label="Following Sky social media">
-      <a href="https://www.instagram.com/followingsky.imo/" target="_blank" rel="noopener" aria-label="Instagram">
-        <!-- Instagram -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm10.25 1.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>
-        </svg>
-      </a>
-
-      <a href="https://www.tiktok.com/@followingsky.imo" target="_blank" rel="noopener" aria-label="TikTok">
-        <!-- TikTok -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M14 2h2c.2 2 1.5 4.2 4 4.6V9c-1.8 0-3.4-.6-4.7-1.7V16a6 6 0 1 1-6-6c.4 0 .7 0 1 .1V13a3 3 0 1 0 2.7 3V2Z"/>
-        </svg>
-      </a>
-
-      <a href="https://www.facebook.com/profile.php?id=61559003077752&locale=it_IT" target="_blank" rel="noopener" aria-label="Facebook">
-        <!-- Facebook -->
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6H16.7V4.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.6v3H10v8h3.5Z"/>
-        </svg>
-      </a>
+  <!-- BOOK A VIEWING -->
+<section style="background:#0e0e0e;border-top:1px solid rgba(201,168,76,.15);padding:48px 0;">
+  <div style="max-width:var(--maxw);margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+    
+    <div>
+      <div style="font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Villa in Cascais</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.5vw,32px);font-weight:600;line-height:1.1;">Pool · Garden · 4 bed · 300 m²</div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px;letter-spacing:.08em;">€3,000 / month · Rua de Birre 369 · Cascais</div>
     </div>
 
-    <small class="note">Privacy • Terms</small>
-  </div>
-</footer>
+    <a class="btn gold" style="flex-shrink:0" href="contact.html?property=Villa%20in%20Cascais%20For%20Rent">
+      Book a viewing
+    </a>
 
+  </div>
+</section>
+
+  <footer>
+    <div class="container foot">
+      <small>© <span id="year"></span> Following Sky</small>
+      <div class="footer-social" aria-label="Following Sky social media">
+        <a href="https://www.instagram.com/followingsky.imo/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm10.25 1.75a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@followingsky.imo" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2h2c.2 2 1.5 4.2 4 4.6V9c-1.8 0-3.4-.6-4.7-1.7V16a6 6 0 1 1-6-6c.4 0 .7 0 1 .1V13a3 3 0 1 0 2.7 3V2Z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61559003077752&locale=it_IT" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6H16.7V4.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.6v3H10v8h3.5Z"/></svg>
+        </a>
+      </div>
+      <small class="note">Privacy • Terms</small>
+    </div>
+  </footer>
 
   <script>
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
+// ===== SCROLL FADE =====
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    e.target.classList.add('visible');
+    fadeObserver.unobserve(e.target);
+  });
+}, {threshold: 0.15});
+document.querySelectorAll('.fadeUp, .fadeLeft, .fadeRight').forEach(el => fadeObserver.observe(el));
 
-    // ===== HERO CAROUSEL arrows =====
-    const heroTrack = document.getElementById('heroTrack');
-    const heroPrev = document.getElementById('heroPrev');
-    const heroNext = document.getElementById('heroNext');
+// ===== MOBILE MENU =====
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+function openMenu(){hamburger.classList.add('open');mobileMenu.classList.add('open');menuOverlay.classList.add('open');document.body.style.overflow='hidden';}
+function closeMenu(){hamburger.classList.remove('open');mobileMenu.classList.remove('open');menuOverlay.classList.remove('open');document.body.style.overflow='';}
+hamburger.addEventListener('click',()=>{hamburger.classList.contains('open')?closeMenu():openMenu();});
+menuOverlay.addEventListener('click',closeMenu);
+mobileMenu.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
 
-    function heroStep(){
-      const w = heroTrack.clientWidth;
-      const isMobile = window.matchMedia('(max-width: 820px)').matches;
-      return isMobile ? w : w / 3;
-    }
+// Footer year
+document.getElementById('year').textContent = new Date().getFullYear();
 
-    heroPrev.addEventListener('click', () => {
-      heroTrack.scrollBy({ left: -heroStep(), behavior: 'smooth' });
-    });
-    heroNext.addEventListener('click', () => {
-      heroTrack.scrollBy({ left: heroStep(), behavior: 'smooth' });
-    });
+// ===== HERO CAROUSEL =====
+const heroTrack = document.getElementById('heroTrack');
+const heroPrev = document.getElementById('heroPrev');
+const heroNext = document.getElementById('heroNext');
+function heroStep(){const w=heroTrack.clientWidth;return window.matchMedia('(max-width:820px)').matches?w:w/3;}
+heroPrev.addEventListener('click',()=>{heroTrack.scrollBy({left:-heroStep(),behavior:'smooth'});});
+heroNext.addEventListener('click',()=>{heroTrack.scrollBy({left:heroStep(),behavior:'smooth'});});
 
-    // ===== LAZY LOAD THUMBNAILS (bottom gallery) =====
-    const lazyImgs = Array.from(document.querySelectorAll('img[data-src]'));
-
-    const io = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if(!entry.isIntersecting) return;
-
-        const img = entry.target;
-        img.src = img.dataset.src;
-        img.removeAttribute('data-src');
-        observer.unobserve(img);
-      });
-    }, { rootMargin: '300px 0px' });
-
-    lazyImgs.forEach(img => io.observe(img));
-
-    // ===== LIGHTBOX for bottom gallery =====
-    const items = Array.from(document.querySelectorAll('.gItem'));
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
-    const lbClose = document.getElementById('lbClose');
-    const lbPrev = document.getElementById('lbPrev');
-    const lbNext = document.getElementById('lbNext');
-    const lbCount = document.getElementById('lbCount');
-
-    const sources = items.map(btn => btn.dataset.src);
-    let current = 0;
-
-    function openLightbox(index){
-      current = index;
-      lb.classList.add('open');
-      renderLightbox();
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox(){
-      lb.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    function renderLightbox(){
-      lbImg.src = sources[current];
-      lbCount.textContent = `${current + 1} / ${sources.length}`;
-    }
-
-    function prev(){
-      current = (current - 1 + sources.length) % sources.length;
-      renderLightbox();
-    }
-
-    function next(){
-      current = (current + 1) % sources.length;
-      renderLightbox();
-    }
-
-    items.forEach((btn, idx) => {
-      btn.addEventListener('click', () => openLightbox(idx));
-    });
-
-    lbClose.addEventListener('click', closeLightbox);
-    lbPrev.addEventListener('click', prev);
-    lbNext.addEventListener('click', next);
-
-    // click outside image closes
-    lb.addEventListener('click', (e) => {
-      if(e.target === lb) closeLightbox();
-    });
-
-    // keyboard
-    window.addEventListener('keydown', (e) => {
-      if(!lb.classList.contains('open')) return;
-      if(e.key === 'Escape') closeLightbox();
-      if(e.key === 'ArrowLeft') prev();
-      if(e.key === 'ArrowRight') next();
-    });
+// ===== LIGHTBOX =====
+const items = Array.from(document.querySelectorAll('.gItem'));
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbClose = document.getElementById('lbClose');
+const lbPrev = document.getElementById('lbPrev');
+const lbNext = document.getElementById('lbNext');
+const lbCount = document.getElementById('lbCount');
+const sources = items.map(btn=>btn.dataset.src);
+let current = 0;
+function openLightbox(index){current=index;lb.classList.add('open');renderLightbox();document.body.style.overflow='hidden';}
+function closeLightbox(){lb.classList.remove('open');document.body.style.overflow='';}
+function renderLightbox(){lbImg.src=sources[current];lbCount.textContent=`${current+1} / ${sources.length}`;}
+function prev(){current=(current-1+sources.length)%sources.length;renderLightbox();}
+function next(){current=(current+1)%sources.length;renderLightbox();}
+items.forEach((btn,idx)=>btn.addEventListener('click',()=>openLightbox(idx)));
+lbClose.addEventListener('click',closeLightbox);
+lbPrev.addEventListener('click',prev);
+lbNext.addEventListener('click',next);
+lb.addEventListener('click',(e)=>{if(e.target===lb)closeLightbox();});
+window.addEventListener('keydown',(e)=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLightbox();if(e.key==='ArrowLeft')prev();if(e.key==='ArrowRight')next();});
   </script>
 
 </body>

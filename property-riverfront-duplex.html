@@ -40,12 +40,7 @@ html,body{margin:0;background:var(--bg);color:var(--text);
     .container{max-width:var(--maxw);margin-inline:auto;padding:20px}
 
     /* ===== NAVBAR (same vibe as your other pages) ===== */
-    header{
-  position:sticky;top:0;z-index:50;
-  background:rgba(10,10,10,.85);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(255,255,255,.05);
-}
+    header{position:sticky;top:0;z-index:10001;background:transparent;backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.05);}
 .nav{display:flex;align-items:center;justify-content:space-between}
 .brand{
   font-family:'Cormorant Garamond',serif;
@@ -475,7 +470,7 @@ nav a.active{
 
     .lbClose{
   position:absolute;
-  top:18px;
+  top:70px;
   right:18px;
   width:46px;height:46px;
   border-radius:999px;
@@ -1407,6 +1402,18 @@ nav a.active{
     </div>
     <div class="lbCount" id="lbCount">1 / 1</div>
   </div>
+
+  <!-- BOOK A VIEWING -->
+<section style="background:#0e0e0e;border-top:1px solid rgba(201,168,76,.15);padding:48px 0;">
+  <div style="max-width:var(--maxw);margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+    <div>
+      <div style="font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Riverfront Duplex · Chiado</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.5vw,32px);font-weight:600;line-height:1.1;">3 bed · 2 bath · Terrace · 171 m²</div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px;letter-spacing:.08em;">€2,790,000 · Rua Vítor Cordon · Chiado · Lisbon</div>
+    </div>
+    <a class="btn gold" style="flex-shrink:0" href="contact.html?property=Riverfront%20Duplex%20Lisbon">Book a viewing</a>
+  </div>
+</section>
 
   <footer>
   <div class="container foot">
