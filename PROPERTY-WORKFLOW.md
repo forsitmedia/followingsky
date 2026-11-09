@@ -124,6 +124,7 @@ Verified on 2026-11-09. Page files remain authoritative for the published detail
 
 | Listing | Page | Photo directory | Listing filter |
 | --- | --- | --- | --- |
+| The Green House / Vila Utopia four-suite villa | `property-vila-utopia.html` | `images/properties/vila-utopia/` | Oeiras |
 | Riverfront Duplex Lisbon | `property-riverfront-duplex.html` | `images/properties/photo-victor-cordon/` | Chiado |
 | The Mountain Retreat / Arrábida estate | `property-the-mountain-retreat.html` | `images/properties/house-azeitao/` | Azeitão |
 | A Private Garden in a Palace / Schindler duplex T2 | `property-shindler-2.html` | `images/properties/photo-palacio-shindler-2/` | Lapa |
@@ -131,7 +132,7 @@ Verified on 2026-11-09. Page files remain authoritative for the published detail
 | The Urban Trio / Alfama building | `property-alfama-guest-house.html` | `images/properties/alfama-guest-house/` | Alfama |
 | The Grand Estate / Cascais rental villa | `property-cascais-short-rental.html` | `images/properties/photo-cascais-short-rental/` | Cascais |
 
-`property-riverfront-duplex.html` and `property-alfama-guest-house.html` are the fuller editorial layout references. The remaining pages contain more compact variants. Keep their existing public URLs stable.
+`property-vila-utopia.html` uses the shared `assets/css/property.css` and `assets/js/property.js` layout and is the preferred reference for new property pages. It supports responsive vertical and horizontal tours, an expandable photo gallery, floor plans, and an accessible lightbox. `property-riverfront-duplex.html` and `property-alfama-guest-house.html` contain the earlier fuller editorial layout; the other existing pages contain compact variants. Keep existing public URLs stable.
 
 ## Context to preserve
 
