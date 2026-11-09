@@ -3,7 +3,7 @@
 ## Read first
 
 - Read `START-HERE.md`, `PROPERTY-WORKFLOW.md`, and `CONTENT-GUIDE.md` before adding or changing listings. These files preserve the user's decisions across chats. Inspect the current files and Git status for the latest state.
-- The user's chosen workflow is AI-assisted intake: they send folders, photos, long documents, and video links; the agent extracts and prepares the listing. Keep this easy for the user. Do not introduce a CMS, admin dashboard, account, or manual entry form unless requested.
+- The user's chosen workflow is AI-assisted intake: they send property links, folders, photos, long documents, and YouTube links; the agent extracts and prepares the listing. A property link is enough to begin. Keep this easy for the user. Do not introduce a CMS, admin dashboard, account, or manual entry form unless requested.
 - When the user says "add this property" or provides property materials, follow `PROPERTY-WORKFLOW.md` without requiring them to repeat the site's background or fill in a template.
 
 ## Site context
@@ -17,6 +17,8 @@
 ## Property content rules
 
 - Read all relevant source material, including long documents. Use appropriate document-reading skills when needed. Keep source references and a concise working brief in the local property inbox so another chat can continue.
+- For a property URL, open and inspect the actual listing, extract its facts and description, and obtain the best accessible property photos from its gallery. Save selected images locally; rewrite the description in Following Sky's style while preserving facts. Follow the link-intake procedure in `PROPERTY-WORKFLOW.md`. Ask for files/screenshots only if particular material cannot be accessed or is insufficient.
+- The user supplies their own YouTube Shorts and horizontal tours. Accept Shorts, watch, short-share, and embed URLs. Verify the property/video match, preserve the supplied orientation (usually 9:16 vertical or 16:9 horizontal), and embed responsively. Record each video's ID, source URL, orientation, and verification result in the brief. Omit the section when no video is supplied.
 - Extract facts faithfully. Distinguish sale/rental, rental period, indoor/gross/plot areas, and room counts. Do not infer legal status, licences, investment returns, availability, exact addresses, or features from photos or unrelated listings.
 - Ask a short, bundled question only for facts that materially affect the listing and cannot be resolved from the provided sources. Continue independent preparation while awaiting an answer.
 - Retain original source files locally. Copy only selected public images/documents into published paths. `property-inbox/` holds local intake materials and is Git-ignored except for its README.

@@ -2,7 +2,7 @@
 
 Property and luxury lifestyle website for Sharon Portal. Static HTML published through GitHub Pages at [followingsky.com](https://followingsky.com).
 
-To add a property, open this project in Codex, provide its folder or documents, and write "Add this property to Following Sky using our saved workflow."
+To add a property, open this project in Codex, provide its listing link, folder, or documents, and write "Add this property to Following Sky using our saved workflow." Add your YouTube Short or horizontal tour links when available.
 
 - [Start here](START-HERE.md): the simple chat workflow and local inbox.
 - [Project instructions](AGENTS.md): context for future Codex chats.

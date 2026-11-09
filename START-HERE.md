@@ -1,8 +1,20 @@
 # Adding properties through chat
 
-Open this Following Sky project in Codex and send the property folder, ZIP, documents, photos, or the path to a local folder. Write:
+Open this Following Sky project in Codex and send the property link, folder, ZIP, documents, photos, or the path to a local folder. Write:
 
 > Add this property to Following Sky using our saved property workflow. The materials are in [folder path / attached files].
+
+If the client has sent you a listing link, you can simply write:
+
+> Add this property using our saved workflow: [property link]
+>
+> Vertical video: [YouTube Short link, if available]
+>
+> Horizontal video: [YouTube link, if available]
+
+The agent opens the listing, extracts the details, downloads the best accessible property photos, rewrites the description in our style, and prepares the page and listing card. You do not need to screenshot each photo or copy the description first. If the page or particular photos cannot be accessed, the agent will identify what is missing and ask only for those materials.
+
+Your YouTube Shorts and horizontal tours can be supplied as links. State the orientation when you know it; the agent checks the video, uses the appropriate layout, and embeds it from YouTube. A property link alone is enough when there is no video to add.
 
 If you want publication in the same request, add:
 
