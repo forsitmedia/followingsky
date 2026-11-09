@@ -24,6 +24,7 @@
 - Ask a short, bundled question only for facts that materially affect the listing and cannot be resolved from the provided sources. Continue independent preparation while awaiting an answer.
 - Retain original source files locally. Copy only selected public images/documents into published paths. `property-inbox/` holds local intake materials and is Git-ignored except for its README.
 - Inspect photos, select a sensible cover, order the gallery, and use web-friendly copies with stable filenames. Hero images, gallery thumbnails, and lightbox sources must reference actual files. A listing with real photos must not silently show a generic fallback.
+- Property-card sharpness is a standing requirement for every new listing and later update. Use dedicated 4:5 covers made from the original photo, normally 640 × 800 and 1200 × 1500, with accurate `srcset` and `sizes`. Never replace these with small gallery thumbnails or upscale a smaller source. Preserve responsive cover attributes when editing cards; regenerate both cover sizes when changing the cover photo. Follow the detailed sizing rules in `PROPERTY-WORKFLOW.md`.
 - Omit unsupported optional sections. Long descriptions should be readable paragraphs; documents should appear as public downloads only when intended for publication. Label illustrative photos clearly.
 - Keep the listing card, detail page, filter location, metadata, and enquiry name consistent. Preserve existing URLs when updating listings.
 
@@ -32,6 +33,7 @@
 - Run `python3 scripts/check-site.py` and `git diff --check` after listing changes. These checks cover local references and unfinished content; use browser QA for layout and remote media.
 - Preview with `python3 -m http.server 8765 --bind 127.0.0.1` when needed, reusing an existing server if available.
 - Check desktop and mobile, images, gallery/lightbox, optional media, location filtering, and the contact form's property prefill. Do not submit live forms during QA.
+- Verify listing-cover sharpness on Retina (2×) and high-density mobile (3×) screens, including the 640 px single-column breakpoint. Check the browser's selected image and actual source pixels against the displayed width and height after cropping; inspect the result visually, not only whether the image loads.
 - Update the working brief after preparing or publishing a listing; update the source map and content guide when their facts change. Keep these instructions concise and current.
 - Honor the session's publication instructions. When push/publication is authorized, complete checks and commit/push the relevant changes without asking again. Describe whether the result is local, pushed, or verified live; a push alone does not verify deployment.
 - Preserve unrelated user changes. Check the staged diff before committing, and never include raw inbox materials.
