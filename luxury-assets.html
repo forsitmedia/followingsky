@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Following Sky — Luxury Assets</title>
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon-48x48.png" sizes="48x48">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --text:#f0f0ee;
+      --muted:#777777;
+      --gold:#c9a84c;
+      --gold-2:#ddb96a;
+      --card:#141414;
+      --radius:6px;
+      --shadow:0 8px 40px rgba(0,0,0,.5);
+      --maxw:1100px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+
+    .container{max-width:var(--maxw);margin-inline:auto;padding:20px}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:10001;
+      background:transparent;
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.05);
+    }
+
+    .nav{display:flex;align-items:center;justify-content:space-between}
+
+    .brand{
+      font-family:'Cormorant Garamond',serif;
+      font-size:18px;
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--text);
+    }
+
+    nav a{
+      margin-left:28px;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-weight:400;
+      opacity:.6;
+      transition:opacity .2s;
+    }
+
+    nav a:hover{opacity:1}
+    nav a.active{opacity:1;color:var(--gold-2)}
+
+    h1,h2,h3{
+      font-family:'Cormorant Garamond',serif;
+      font-weight:600;
+      letter-spacing:-.01em;
+      line-height:1.1;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:42px;
+      padding:0 24px;
+      border-radius:3px;
+      border:1px solid rgba(201,168,76,.4);
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      background:transparent;
+      color:var(--text);
+      transition:border-color .2s ease, background .2s ease, color .2s ease;
+    }
+
+    .btn.gold{
+      background:var(--gold);
+      color:#0a0a0a;
+      border-color:var(--gold);
+    }
+
+    .btn.dark{
+      color:var(--gold);
+      border-color:rgba(201,168,76,.35);
+    }
+
+    .btn.dark:hover{
+      background:var(--gold);
+      color:#0a0a0a;
+    }
+
+    main{
+      padding:54px 0 70px;
+    }
+
+    .kicker{
+      color:var(--gold);
+      font-size:11px;
+      letter-spacing:.25em;
+      text-transform:uppercase;
+      font-weight:500;
+      margin-bottom:12px;
+    }
+
+    .page-title{
+      font-size:clamp(42px,7vw,90px);
+      margin:0;
+    }
+
+    .page-title em{
+      color:var(--gold-2);
+      font-style:italic;
+    }
+
+    .intro{
+      color:rgba(240,240,238,.58);
+      font-size:16px;
+      line-height:1.8;
+      max-width:680px;
+      margin:18px 0 38px;
+    }
+
+    .assets-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    @media(max-width:960px){
+      .assets-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media(max-width:640px){
+      .assets-grid{grid-template-columns:1fr}
+    }
+
+    .asset-card{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:transform .2s ease,border-color .2s ease;
+    }
+
+    .asset-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(201,168,76,.45);
+    }
+
+    .asset-image{
+      position:relative;
+      aspect-ratio:4/5;
+      overflow:hidden;
+      background:#000;
+    }
+
+    .asset-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:saturate(1.05) brightness(.95);
+      transition:transform 1s ease;
+    }
+
+    .asset-card:hover .asset-image img{
+      transform:scale(1.04);
+    }
+
+    .asset-category{
+      position:absolute;
+      top:14px;
+      left:14px;
+      padding:6px 10px;
+      border-radius:3px;
+      background:rgba(0,0,0,.65);
+      border:1px solid rgba(201,168,76,.45);
+      color:var(--gold-2);
+      font-size:10px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      backdrop-filter:blur(6px);
+    }
+
+    .asset-body{
+      padding:16px;
+    }
+
+    .asset-title{
+      font-family:'Cormorant Garamond',serif;
+      font-size:25px;
+      font-weight:600;
+      margin:0 0 6px;
+    }
+
+    .asset-description{
+      color:rgba(240,240,238,.55);
+      font-size:13px;
+      line-height:1.6;
+      margin:0 0 14px;
+    }
+
+    .asset-price{
+      color:var(--gold-2);
+      font-family:'Cormorant Garamond',serif;
+      font-size:24px;
+      font-weight:600;
+      margin-bottom:16px;
+    }
+
+    .asset-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    footer{
+      border-top:1px solid rgba(255,255,255,.05);
+      background:#0a0a0a;
+    }
+
+    .foot{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:32px 0;
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:.08em;
+    }
+
+    @media(max-width:520px){
+      .foot{
+        flex-direction:column;
+        gap:12px;
+        text-align:center;
+      }
+    }
+
+    .hamburger{
+      display:none;
+      flex-direction:column;
+      justify-content:center;
+      gap:5px;
+      width:36px;
+      height:36px;
+      background:transparent;
+      border:none;
+      cursor:pointer;
+      padding:4px;
+      z-index:10000;
+    }
+
+    .hamburger span{
+      display:block;
+      width:100%;
+      height:1px;
+      background:var(--gold);
+      transition:transform .4s ease, opacity .4s ease;
+    }
+
+    .hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+    .menuOverlay{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.45);
+      z-index:9998;
+      opacity:0;
+      transition:opacity .4s ease;
+      pointer-events:none;
+    }
+
+    .menuOverlay.open{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .mobileMenu{
+      position:fixed;
+      top:0;
+      right:0;
+      bottom:0;
+      width:75vw;
+      max-width:320px;
+      background:#0e0e0e;
+      border-left:1px solid rgba(201,168,76,.15);
+      z-index:9999;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      padding:60px 40px;
+      transform:translateX(100%);
+      transition:transform .5s cubic-bezier(.16,1,.3,1);
+      pointer-events:none;
+    }
+
+    .mobileMenu.open{
+      transform:translateX(0);
+      pointer-events:auto;
+    }
+
+    .mobileMenu a{
+      font-size:13px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--text);
+      opacity:.5;
+      padding:20px 0;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .mobileMenu a.active{
+      opacity:1;
+      color:var(--gold-2);
+    }
+
+    @media(max-width:820px){
+      .hamburger{display:flex}
+      nav{display:none}
+      .menuOverlay{display:block}
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="index.html" class="brand">Following Sky</a>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="properties.html">Properties</a>
+        <a href="arts.html">Arts</a>
+        <a href="luxury-assets.html" class="active">Luxury Items</a>
+        <a href="collaborations.html">Brands</a>
+        <a href="bespoke-experiences.html">Events</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<div class="menuOverlay" id="menuOverlay"></div>
+<div class="mobileMenu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="properties.html">Properties</a>
+  <a href="arts.html">Arts</a>
+  <a href="luxury-assets.html" class="active">Luxury Items</a>
+  <a href="collaborations.html">Brands</a>
+  <a href="bespoke-experiences.html">Events</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<main class="container">
+
+  <div class="kicker">Luxury Lifestyle</div>
+  <h1 class="page-title">Luxury <em>Assets</em></h1>
+  <p class="intro">
+    A curated selection of exceptional cars, watches, design pieces, and high-value items available through Following Sky’s trusted network.
+  </p>
+
+  <section class="assets-grid">
+
+    <!-- ITEM 1 -->
+    <article class="asset-card">
+      <a href="item-porsche-911.html">
+        <div class="asset-image">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80" alt="Porsche 911 Carrera">
+          <div class="asset-category">Car</div>
+        </div>
+      </a>
+
+      <div class="asset-body">
+        <h2 class="asset-title">Porsche 911 Carrera</h2>
+        <p class="asset-description">A timeless performance icon selected for collectors and lifestyle-driven buyers.</p>
+        <div class="asset-price">€185,000</div>
+
+        <div class="asset-actions">
+          <a class="btn gold" href="item-porsche-911.html">View Details</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ITEM 2 -->
+    <article class="asset-card">
+      <a href="item-collector-watch.html">
+        <div class="asset-image">
+          <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=900&q=80" alt="Collector watch">
+          <div class="asset-category">Watch</div>
+        </div>
+      </a>
+
+      <div class="asset-body">
+        <h2 class="asset-title">Collector Watch</h2>
+        <p class="asset-description">A refined timepiece for collectors seeking rarity, elegance, and long-term value.</p>
+        <div class="asset-price">Price on request</div>
+
+        <div class="asset-actions">
+          <a class="btn gold" href="item-collector-watch.html">View Details</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ITEM 3 -->
+    <article class="asset-card">
+      <a href="item-design-piece.html">
+        <div class="asset-image">
+          <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=900&q=80" alt="Rare design piece">
+          <div class="asset-category">Design</div>
+        </div>
+      </a>
+
+      <div class="asset-body">
+        <h2 class="asset-title">Rare Design Piece</h2>
+        <p class="asset-description">A distinctive object selected for interiors, collectors, and curated luxury spaces.</p>
+        <div class="asset-price">Price on request</div>
+
+        <div class="asset-actions">
+          <a class="btn gold" href="item-design-piece.html">View Details</a>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+</main>
+
+<footer>
+  <div class="container foot">
+    <small>© <span id="year"></span> Following Sky</small>
+    <small>Privacy • Terms</small>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuOverlay = document.getElementById('menuOverlay');
+
+  function openMenu(){
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    menuOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu(){
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    menuOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  menuOverlay.addEventListener('click', closeMenu);
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
+
+</body>
+</html>
