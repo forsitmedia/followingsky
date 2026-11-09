@@ -70,6 +70,7 @@ The user does not need to complete this brief. Omit empty optional fields from t
 - Summarise only supported facts on the listing card. Ensure the full description and card agree on price, location, transaction type, and key figures.
 - Inspect the actual photos. Select an appropriate exterior, view, or principal living space as the cover, then order the remaining images logically. Respect a cover choice or order supplied by the user.
 - Keep source originals in the inbox; place web copies in `images/properties/<property-slug>/`. Prefer simple lowercase filenames without trailing spaces. Compress and size images appropriately, typically up to 1600–2000 pixels for large views, preserving orientation and acceptable quality.
+- Property listing cards use a 4:5 image area. Prepare separate, centred 4:5 card covers directly from the original photo, normally 640 × 800 and 1200 × 1500 WebP, without upscaling a smaller source. Use accurate width descriptors in `srcset` and `sizes` matching the grid so Retina screens receive enough pixels. Keep small gallery thumbnails for the gallery; do not reuse them for large listing cards. Preserve any specified focal point or crop.
 - Use the same selected files for hero, gallery, and lightbox. Write descriptive alt text. Check the crop on desktop and mobile.
 - Include only genuine videos for this property. Verify the supplied URL and content before using its embed. If none are provided, omit the video section or use a small non-interactive "Video coming soon" state if appropriate.
 - A source brochure is intake material by default. Publish a cleaned public download only when the user's intent supports sharing it. Keep private notes and contact/owner information out of the public assets.
@@ -115,6 +116,8 @@ python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
 Check the new page and its listing card on desktop and mobile. Verify real images load without fallback, image crops, gallery/lightbox navigation, mobile menu, location filters, optional videos/documents, and property enquiry prefill. For each YouTube player, check the vertical/horizontal aspect ratio, mobile fit, and fullscreen control as well as its destination. Keep missing optional content out of the visitor flow. Check new external media against its actual destination; do not submit enquiry forms.
+
+For listing covers, also test at 2× display density and at the 640 px single-column breakpoint. Check the selected `currentSrc` and its actual pixel dimensions against both displayed width and height after cropping; a wide photo cropped into a tall card needs more source pixels than the displayed width alone suggests. Confirm every `srcset` candidate exists and loads. Original source resolution sets the upper limit; ask for a better original only if the saved source cannot support the display size.
 
 Save the prepared state and any unresolved points in the brief so a new chat can continue. Follow the user's current publication instruction and any already-established authorization. When pushing, inspect the staged diff, exclude inbox originals, commit and push, and report the commit. Claim a live deployment only after confirming it.
 

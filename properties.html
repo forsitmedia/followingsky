@@ -163,7 +163,6 @@ nav a.active{
   height:100%;
   object-fit:cover;
   filter:saturate(1.08) brightness(1.08) contrast(1.05);
-  transform:scale(1.01);
 }
     .media::after{
       content:"";
@@ -488,7 +487,7 @@ h1,h2,h3{
       <!-- ✅ PROPERTY CARD TEMPLATE (copy/paste to add more) -->
       <!-- Change:
           1) href="property-....html"
-          2) img src="..."
+          2) img src/srcset/sizes (use card covers, not small gallery thumbnails)
           3) title/location/price/meta
       -->
 
@@ -496,7 +495,7 @@ h1,h2,h3{
       <article class="prop-card fadeUp" data-location="Restelo">
         <a class="prop-link" href="property-restelo-rental.html" aria-label="Open The Restelo Residence in Lisbon">
           <div class="media">
-            <img src="images/properties/restelo-rental/thumbs/01-pool-and-residence.webp" alt="The Restelo Residence and private pool at dusk" loading="lazy" decoding="async">
+            <img src="images/properties/restelo-rental/card-cover-1200.webp" srcset="images/properties/restelo-rental/card-cover-640.webp 640w, images/properties/restelo-rental/card-cover-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 980px) calc((100vw - 56px) / 2), (max-width: 1100px) calc((100vw - 72px) / 3), 343px" width="1200" height="1500" alt="The Restelo Residence and private pool at dusk" loading="lazy" decoding="async">
             <div class="pill">For Rent</div>
             <div class="media-text"><div class="media-title">THE RESTELO RESIDENCE</div><div class="media-sub">Restelo · Lisbon, Portugal</div></div>
           </div>
@@ -512,7 +511,7 @@ h1,h2,h3{
       <article class="prop-card fadeUp" data-location="Oeiras">
         <a class="prop-link" href="property-vila-utopia.html" aria-label="Open The Green House in Vila Utopia">
           <div class="media">
-            <img src="images/properties/vila-utopia/thumbs/01-pool-terrace.webp" alt="Pool and terrace at The Green House in Vila Utopia" loading="lazy" decoding="async">
+            <img src="images/properties/vila-utopia/card-cover-1200.webp" srcset="images/properties/vila-utopia/card-cover-640.webp 640w, images/properties/vila-utopia/card-cover-1200.webp 1200w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 980px) calc((100vw - 56px) / 2), (max-width: 1100px) calc((100vw - 72px) / 3), 343px" width="1200" height="1500" alt="Pool and terrace at The Green House in Vila Utopia" loading="lazy" decoding="async">
             <div class="pill">For Sale</div>
             <div class="media-text"><div class="media-title">THE GREEN HOUSE</div><div class="media-sub">Vila Utopia · Oeiras, Portugal</div></div>
           </div>
