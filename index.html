@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Following Sky — A Curated Luxury Lifestyle Platform</title>
-  <meta name="description" content="Following Sky is a curated luxury lifestyle platform offering exceptional properties, art, high-value assets, brand collaborations, and bespoke private experiences." />
+  <meta name="description" content="Explore Following Sky’s property listings, Ivone Machado’s art collection, and selected luxury assets, with personal guidance for every enquiry." />
 
 <!-- ===================== -->
 <!-- FAVICON SETUP (GITHUB PAGES SAFE) -->
@@ -32,7 +32,7 @@
   --line:rgba(255,255,255,.06);
 }
     *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif}
+    html,body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:clip}
     img{max-width:100%;display:block}
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--maxw);margin-inline:auto;padding:20px}
@@ -460,6 +460,8 @@ h1,h2,h3{
   background:linear-gradient(to right, rgba(201,168,76,.35), transparent);
 }
   </style>
+  <link rel="stylesheet" href="assets/css/site-status.css">
+  <script src="assets/js/image-fallbacks.js"></script>
 </head>
 <body>
   <!-- Header -->
@@ -497,16 +499,13 @@ h1,h2,h3{
 
   <!-- HERO with background video -->
   <section class="hero" aria-label="Featured properties video">
-    <!-- Replace src with your local video: assets/video/hero.mp4 -->
     <video autoplay muted loop playsinline poster="assets/images/hero-poster.jpg">
       <source src="video/houses.mp4" type="video/mp4" />
-      <!-- Optional webm for better compression -->
-      <source src="assets/video/hero.webm" type="video/webm" />
       Your browser does not support the video tag.
     </video>
     <div class="center">
       <h1>Luxury Lifestyle Platform</h1>
-      <p>High-end Brands, exclusive listings, unique experiences, and a seamless buying experience.</p>
+      <p>Exceptional properties, selected art, and luxury assets — with personal guidance at every step.</p>
            <div class="hero-actions">
         <a class="btn dark" href="properties.html">See Properties</a>
         <a class="btn dark" href="arts.html">See Art</a>
@@ -605,29 +604,29 @@ Through Following Sky, Sharon goes beyond real estate — curating <strong style
       <div class="section-kicker fadeUp">Art & Design</div>
       <h2 class="fadeUp">Featured <em>Artist</em></h2>
       <div class="section-divider fadeUp" style="transition-delay:.1s"></div>
-      <p class="note">A curated glimpse into the artists and pieces represented by Following Sky.</p>
+      <p class="note">Discover Ivone Machado and her watercolour series, The Colour of Wisdom.</p>
 
       <div class="grid">
         <div class="tile fadeUp" style="transition-delay:0s">
-          <img src="https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=900&q=80" alt="Sofia Mendes portrait" />
-          <a href="artistsofiamendes.html">
-            <span>Sofia Mendes</span>
+          <img src="art%20images/PORTFOLIO_p01_01_Cover%20portrait.jpeg" alt="Ivone Machado" />
+          <a href="artist-ivone-machado.html">
+            <span>Ivone Machado</span>
             <span class="badge">Artist →</span>
           </a>
         </div>
 
         <div class="tile fadeUp" style="transition-delay:.1s">
-          <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=900&q=80" alt="Memória do Tejo artwork" />
-          <a href="artistsofiamendes.html#collection">
-            <span>Memória do Tejo</span>
+          <img src="art%20images/AW_p05_02_Sophia%20-%20Rhodonite%20Genuine.jpeg" alt="Sophia — watercolour by Ivone Machado" />
+          <a href="artist-ivone-machado.html#collection">
+            <span>Sophia</span>
             <span class="badge">View piece →</span>
           </a>
         </div>
 
         <div class="tile fadeUp" style="transition-delay:.2s">
-          <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=900&q=80" alt="Luz de Agosto artwork" />
-          <a href="artistsofiamendes.html#collection">
-            <span>Luz de Agosto</span>
+          <img src="art%20images/AW_p03_01_Joana%20-%20Cobalt%20Blue.jpeg" alt="Joana — watercolour by Ivone Machado" />
+          <a href="artist-ivone-machado.html#collection">
+            <span>Joana</span>
             <span class="badge">View piece →</span>
           </a>
         </div>
@@ -641,23 +640,24 @@ Through Following Sky, Sharon goes beyond real estate — curating <strong style
       <div class="section-kicker fadeUp">Luxury Lifestyle</div>
       <h2 class="fadeUp">Beyond <em>Real Estate</em></h2>
       <div class="section-divider fadeUp" style="transition-delay:.1s"></div>
-      <p class="note">Following Sky connects clients with high-value assets, selected brand collaborations, and unforgettable private experiences.</p>
+      <p class="note">Explore our Porsche listing and private event enquiries. New brand collaborations are coming soon.</p>
 
       <div class="grid">
         <div class="tile fadeUp" style="transition-delay:0s">
-          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80" alt="Luxury cars and high-value assets" />
+          <img src="assets/images/placeholders/porsche-911.jpg" alt="Porsche 911 — illustrative preview" />
           <a href="luxury-assets.html">
             <span>Luxury Assets</span>
             <span class="badge">Explore →</span>
           </a>
         </div>
 
-        <div class="tile fadeUp" style="transition-delay:.1s">
-          <img src="https://images.unsplash.com/photo-1607582544956-46e2e8d2a14d?w=900&q=80" alt="Iconic luxury brand collaborations" />
-          <a href="collaborations.html">
+        <div class="tile fadeUp is-unavailable" style="transition-delay:.1s">
+          <img src="assets/images/placeholders/chocolate.jpg" alt="Chocolate — brand collaboration preview" />
+          <div class="tile-caption">
             <span>Iconic Brand Collaborations</span>
-            <span class="badge">Discover →</span>
-          </a>
+            <span class="badge">Coming soon</span>
+            <span class="availability-note">Not yet available on the site.</span>
+          </div>
         </div>
 
         <div class="tile fadeUp" style="transition-delay:.2s">
@@ -684,7 +684,7 @@ Through Following Sky, Sharon goes beyond real estate — curating <strong style
 
         <div class="service-card fadeLeft" style="transition-delay:.2s">
           <h3>Luxury Lifestyle Curation</h3>
-          <p>Access to selected high-value assets, iconic brands, art, design pieces, and unique opportunities beyond traditional real estate.</p>
+          <p>Personal guidance through selected art and luxury assets, with new collections and collaborations introduced as they become available.</p>
         </div>
 
         <div class="service-card fadeLeft" style="transition-delay:.4s">
@@ -751,6 +751,7 @@ Through Following Sky, Sharon goes beyond real estate — curating <strong style
       <option>Book a property viewing</option>
       <option>Sell or value a property</option>
       <option>Luxury assets enquiry</option>
+      <option>Art enquiry</option>
       <option>Brand collaboration</option>
       <option>Bespoke experience or private event</option>
       <option>General enquiry</option>
@@ -827,7 +828,7 @@ Through Following Sky, Sharon goes beyond real estate — curating <strong style
     // Fill fields if they exist
     const reason = document.getElementById('reason');
     const msg = document.getElementById('message');
-    if (reason) reason.value = "Book a viewing";
+    if (reason) reason.value = "Book a property viewing";
     if (msg) {
       msg.value = `Hello, I'm interested in "${prop}". Please contact me with more details and available viewing times.`;
     }

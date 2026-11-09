@@ -368,6 +368,8 @@
       font-weight: 600; letter-spacing: -.01em; line-height: 1.1;
     }
   </style>
+  <link rel="stylesheet" href="assets/css/site-status.css">
+  <script src="assets/js/image-fallbacks.js"></script>
 </head>
 <body>
 
@@ -407,7 +409,7 @@
     <div class="page-hero-inner">
       <div class="kicker">Curated Collections</div>
       <h1>Arts &amp; <em>Design</em></h1>
-      <p>Sharon curates exceptional works from emerging and established artists worldwide — each collection a conversation between beauty and investment.</p>
+      <p>Explore Ivone Machado’s available collection. Additional artist profiles and collections are coming soon.</p>
       <div class="hero-divider"></div>
     </div>
   </section>
@@ -415,48 +417,14 @@
   <!-- ARTIST CARDS -->
   <main class="artists-list">
 
-    <!-- ARTIST 1 -->
-    <article class="artist-card">
-      <div class="artist-img fadeLeft">
-        <div class="artist-num">01</div>
-        <!-- Replace with artist image: images/arts/artist-sofia.jpg -->
-        <img src="https://images.unsplash.com/photo-1578301978162-7aae4d755744?w=1200&q=80" alt="Sofia Mendes artwork" />
-      </div>
-      <div class="artist-info fadeRight" style="transition-delay:.15s">
-        <div class="artist-tag">Featured Artist</div>
-        <h2>Sofia <em>Mendes</em></h2>
-        <div class="artist-origin">Portuguese · Contemporary</div>
-        <div class="artist-divider"></div>
-        <p>Sofia's canvases explore the tension between memory and place — layered oils that pulse with Lisbon light. Her work has been exhibited across Lisbon, Paris, and São Paulo, and is held in private collections throughout Europe.</p>
-        <div class="artist-meta">
-          <div class="meta-item">
-            <span class="meta-label">Works available</span>
-            <span class="meta-value">12</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Medium</span>
-            <span class="meta-value">Oil</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">From</span>
-            <span class="meta-value">€2,400</span>
-          </div>
-        </div>
-        <div class="artist-actions">
-          <a class="btn gold" href="artistsofiamendes.html">View Collection</a>
-          <a class="btn dark" href="contact.html?artist=Sofia%20Mendes">Enquire</a>
-        </div>
-      </div>
-    </article>
-
-    <!-- ARTIST 2 -->
+    <!-- PUBLISHED ARTIST -->
     <article class="artist-card">
       <div class="artist-img fadeRight">
-        <div class="artist-num">02</div>
+        <div class="artist-num">01</div>
         <img src="art%20images/AW_p01_01_Cover%20-%20The%20Color%20of%20Wisdom.jpeg" alt="Ivone Machado — The Colour of Wisdom series" />
       </div>
       <div class="artist-info fadeLeft" style="transition-delay:.15s">
-        <div class="artist-tag">Contemporary Watercolour</div>
+        <div class="artist-tag">Featured Artist · Contemporary Watercolour</div>
         <h2>Ivone <em>Machado</em></h2>
         <div class="artist-origin">Portuguese · Lisbon · b. Luanda 1971</div>
         <div class="artist-divider"></div>
@@ -482,37 +450,34 @@
       </div>
     </article>
 
-    <!-- ARTIST 3 -->
-    <article class="artist-card">
+    <!-- UPCOMING COLLECTIONS -->
+    <article class="artist-card is-unavailable">
       <div class="artist-img fadeLeft">
-        <div class="artist-num">03</div>
-        <!-- Replace with artist image: images/arts/artist-lena.jpg -->
-        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&q=80" alt="Léna Duvivier painting" />
+        <div class="artist-num">02</div>
+        <img src="assets/images/placeholders/artist-sofia.jpg" alt="Art collection preview — illustrative image" /><span class="preview-label">Preview</span>
       </div>
       <div class="artist-info fadeRight" style="transition-delay:.15s">
-        <div class="artist-tag">Photography & Mixed Media</div>
-        <h2>Léna <em>Duvivier</em></h2>
-        <div class="artist-origin">French · Photography</div>
+        <div class="artist-tag">Coming soon</div>
+        <h2>Sofia <em>Mendes</em></h2>
+        <div class="artist-origin">Collection in preparation</div>
         <div class="artist-divider"></div>
-        <p>Léna's large-format photographs dissolve the boundary between landscape and abstraction. Shot across the Alentejo plains and Normandy coastlines, her limited editions are collected by design studios and private patrons throughout Europe.</p>
-        <div class="artist-meta">
-          <div class="meta-item">
-            <span class="meta-label">Works available</span>
-            <span class="meta-value">18</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Medium</span>
-            <span class="meta-value">Photo</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">From</span>
-            <span class="meta-value">€1,200</span>
-          </div>
-        </div>
-        <div class="artist-actions">
-          <a class="btn gold" href="artist-lena-duvivier.html">View Collection</a>
-          <a class="btn dark" href="contact.html?artist=L%C3%A9na%20Duvivier">Enquire</a>
-        </div>
+        <p>This artist profile and collection are being prepared. Details will be added when they are ready.</p>
+        <div class="artist-actions"><div><span class="availability-status">Coming soon</span><span class="availability-note">Not yet available on the site.</span></div></div>
+      </div>
+    </article>
+
+    <article class="artist-card is-unavailable">
+      <div class="artist-img fadeLeft">
+        <div class="artist-num">03</div>
+        <img src="assets/images/placeholders/artist-lena.jpg" alt="Art collection preview — illustrative image" /><span class="preview-label">Preview</span>
+      </div>
+      <div class="artist-info fadeRight" style="transition-delay:.15s">
+        <div class="artist-tag">Coming soon</div>
+        <h2>Léna <em>Duvivier</em></h2>
+        <div class="artist-origin">Collection in preparation</div>
+        <div class="artist-divider"></div>
+        <p>This artist profile and collection are being prepared. Details will be added when they are ready.</p>
+        <div class="artist-actions"><div><span class="availability-status">Coming soon</span><span class="availability-note">Not yet available on the site.</span></div></div>
       </div>
     </article>
 

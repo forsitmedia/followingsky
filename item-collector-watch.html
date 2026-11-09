@@ -1,265 +1,35 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Following Sky — Collector Watch</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Collector Watch — coming soon to Following Sky.">
+  <title>Following Sky — Collector Watch · Coming Soon</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    body{margin:0;background:#0a0a0a;color:#f0f0ee;font-family:'DM Sans',sans-serif}
-    .container{max-width:1100px;margin:auto;padding:20px}
-
-    h1{font-family:'Cormorant Garamond',serif;font-size:60px;margin:0}
-    h1 em{color:#ddb96a}
-
-    .back{color:#c9a84c;font-size:12px;text-transform:uppercase;margin-bottom:20px;display:inline-block}
-
-    .layout{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:40px}
-    @media(max-width:800px){.layout{grid-template-columns:1fr}}
-
-    .video{aspect-ratio:9/16;background:#000;border:1px solid #222}
-    .video iframe{width:100%;height:100%}
-
-    .card{background:#141414;padding:24px;border:1px solid #222}
-
-    .price{font-size:34px;color:#ddb96a;margin:10px 0}
-
-    .btn{display:inline-block;padding:12px 20px;border:1px solid #c9a84c;color:#c9a84c;text-transform:uppercase;font-size:12px;margin-top:10px}
-    .btn:hover{background:#c9a84c;color:#000}
-
-    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:40px}
-    .gallery img{width:100%;height:220px;object-fit:cover}
-    .gallery img{
-  cursor:pointer;
-}
-
-.lightbox{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.92);
-  z-index:30000;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:24px;
-}
-
-.lightbox.open{
-  display:flex;
-}
-
-.lightbox img{
-  max-width:90vw;
-  max-height:86vh;
-  object-fit:contain;
-  border-radius:6px;
-}
-
-.lightbox-close{
-  position:absolute;
-  top:22px;
-  right:28px;
-  background:transparent;
-  border:none;
-  color:#fff;
-  font-size:34px;
-  cursor:pointer;
-}
-
-.lightbox-arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.2);
-  color:#fff;
-  width:44px;
-  height:44px;
-  border-radius:999px;
-  cursor:pointer;
-  font-size:26px;
-}
-
-.lightbox-arrow.left{
-  left:24px;
-}
-
-.lightbox-arrow.right{
-  right:24px;
-}
-
-@media(max-width:640px){
-  .lightbox-arrow{
-    width:38px;
-    height:38px;
-    font-size:22px;
-  }
-
-  .lightbox-close{
-    top:16px;
-    right:20px;
-  }
-}
-  
-    /* ===== STICKY HEADER ===== */
-    header{position:sticky;top:0;z-index:10001;background:transparent;backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.05);}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:20px;}
-    .brand{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#f0f0ee;text-decoration:none;}
-    nav a{margin-left:28px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:400;opacity:.6;transition:opacity .2s;color:#f0f0ee;text-decoration:none;}
-    nav a:hover{opacity:1;}
-    nav a.active{opacity:1;color:#ddb96a;}
-    .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;background:transparent;border:none;cursor:pointer;padding:4px;z-index:10000;}
-    .hamburger span{display:block;width:100%;height:1px;background:#c9a84c;transition:transform .4s ease,opacity .4s ease;}
-    .hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
-    .hamburger.open span:nth-child(2){opacity:0;}
-    .hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
-    .menuOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9998;opacity:0;transition:opacity .4s ease;pointer-events:none;}
-    .menuOverlay.open{opacity:1;pointer-events:auto;}
-    .mobileMenu{position:fixed;top:0;right:0;bottom:0;width:75vw;max-width:320px;background:#141414;border-left:1px solid rgba(201,168,76,.15);z-index:9999;display:flex;flex-direction:column;justify-content:center;padding:60px 40px;transform:translateX(100%);transition:transform .5s cubic-bezier(.16,1,.3,1);pointer-events:none;}
-    .mobileMenu.open{transform:translateX(0);pointer-events:auto;}
-    .mobileMenu a{font-size:13px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:#f0f0ee;opacity:.5;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.06);transition:opacity .2s;display:block;text-decoration:none;}
-    .mobileMenu a:hover{opacity:1;}
-    .mobileMenu a.active{opacity:1;color:#ddb96a;}
-    @media(max-width:820px){.hamburger{display:flex;}nav{display:none;}.menuOverlay{display:block;}}
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #0a0a0a; color: #f0f0ee; font-family: 'DM Sans', sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
   </style>
+  <link rel="stylesheet" href="assets/css/site-status.css">
+  <script src="assets/js/image-fallbacks.js"></script>
 </head>
-
-<body>
-<header>
-  <div class="nav" style="max-width:1100px;margin:auto;">
-    <a href="index.html" class="brand">Following Sky</a>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="properties.html">Properties</a>
-        <a href="arts.html">Arts</a>
-        <a href="luxury-assets.html" class="active">Luxury Items</a>
-        <a href="collaborations.html">Brands</a>
-        <a href="bespoke-experiences.html">Events</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-    <button class="hamburger" id="hamburger" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<div class="menuOverlay" id="menuOverlay"></div>
-<div class="mobileMenu" id="mobileMenu">
-  <a href="index.html">Home</a>
-  <a href="properties.html">Properties</a>
-  <a href="arts.html">Arts</a>
-  <a href="luxury-assets.html" class="active">Luxury Items</a>
-  <a href="collaborations.html">Brands</a>
-  <a href="bespoke-experiences.html">Events</a>
-  <a href="contact.html">Contact</a>
-</div>
-
-
-
-<div class="container">
-
-<a href="luxury-assets.html" class="back">← Back to Luxury Assets</a>
-
-<h1>Collector <em>Watch</em></h1>
-<p>A refined timepiece selected for collectors seeking rarity, elegance, and long-term value.</p>
-
-<div class="layout">
-
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID_HERE"></iframe>
-  </div>
-
-  <div class="card">
-    <div class="price">Price on request</div>
-
-    <p>
-      This watch represents a curated selection of luxury timepieces available through Following Sky. 
-      Each piece is chosen for its craftsmanship, design, and long-term collectible value.
-    </p>
-
-    <a class="btn" href="contact.html?asset=Collector%20Watch">Enquire</a>
-  </div>
-
-</div>
-
-<div class="gallery">
-  <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=900&q=80">
-  <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=900&q=80">
-  <img src="https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?w=900&q=80">
-</div>
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lightboxClose">×</button>
-  <button class="lightbox-arrow left" id="lightboxPrev">‹</button>
-  <img id="lightboxImage" src="" alt="">
-  <button class="lightbox-arrow right" id="lightboxNext">›</button>
-</div>
-</div>
-
-<script>
-const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
-const lightbox = document.getElementById('lightbox');
-const lightboxImage = document.getElementById('lightboxImage');
-const lightboxClose = document.getElementById('lightboxClose');
-const lightboxPrev = document.getElementById('lightboxPrev');
-const lightboxNext = document.getElementById('lightboxNext');
-
-let currentImageIndex = 0;
-
-function openLightbox(index){
-  currentImageIndex = index;
-  lightboxImage.src = galleryImages[currentImageIndex].src;
-  lightbox.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox(){
-  lightbox.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function showPrevImage(){
-  currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-  lightboxImage.src = galleryImages[currentImageIndex].src;
-}
-
-function showNextImage(){
-  currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-  lightboxImage.src = galleryImages[currentImageIndex].src;
-}
-
-galleryImages.forEach((img, index) => {
-  img.addEventListener('click', () => openLightbox(index));
-});
-
-lightboxClose.addEventListener('click', closeLightbox);
-lightboxPrev.addEventListener('click', showPrevImage);
-lightboxNext.addEventListener('click', showNextImage);
-
-lightbox.addEventListener('click', (e) => {
-  if(e.target === lightbox) closeLightbox();
-});
-
-document.addEventListener('keydown', (e) => {
-  if(!lightbox.classList.contains('open')) return;
-
-  if(e.key === 'Escape') closeLightbox();
-  if(e.key === 'ArrowLeft') showPrevImage();
-  if(e.key === 'ArrowRight') showNextImage();
-});
-</script>
-
-
-<script>
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const menuOverlay = document.getElementById('menuOverlay');
-  function openMenu(){hamburger.classList.add('open');mobileMenu.classList.add('open');menuOverlay.classList.add('open');document.body.style.overflow='hidden';}
-  function closeMenu(){hamburger.classList.remove('open');mobileMenu.classList.remove('open');menuOverlay.classList.remove('open');document.body.style.overflow='';}
-  hamburger.addEventListener('click',()=>hamburger.classList.contains('open')?closeMenu():openMenu());
-  menuOverlay.addEventListener('click',closeMenu);
-  mobileMenu.querySelectorAll('a').forEach(l=>l.addEventListener('click',closeMenu));
-</script>
+<body class="pending-page">
+  <header class="pending-header"><a class="pending-brand" href="index.html">Following Sky</a></header>
+  <main class="pending-main">
+    <img class="pending-image" src="assets/images/placeholders/collector-watch.jpg" alt="Illustrative preview for Collector Watch">
+    <div>
+      <span class="availability-status">Coming soon</span>
+      <h1>Collector Watch</h1>
+      <p>Our watch selection is being prepared. It is not yet available on the site.</p>
+      <p>Details will be added when the collection is ready.</p>
+      <a class="pending-back" href="luxury-assets.html">← Back to Luxury Assets</a>
+    </div>
+  </main>
+  <footer class="pending-footer">Following Sky · Curated Luxury Lifestyle</footer>
 </body>
 </html>

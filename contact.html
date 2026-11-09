@@ -378,6 +378,8 @@ h1,h2,h3{
 }
 
   </style>
+  <link rel="stylesheet" href="assets/css/site-status.css">
+  <script src="assets/js/image-fallbacks.js"></script>
 </head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" />
 <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js"></script>
@@ -457,6 +459,9 @@ h1,h2,h3{
       <option>Selling a property</option>
       <option>Property valuation</option>
       <option>Off-market enquiry</option>
+      <option>Art enquiry</option>
+      <option>Luxury assets enquiry</option>
+      <option>Bespoke experience or private event</option>
       <option>General enquiry</option>
       <option>other</option>
     </select>
@@ -465,7 +470,7 @@ h1,h2,h3{
   <div class="full">
     <label for="message">Message</label>
     <textarea id="message" name="message" placeholder="Tell us a bit about what you need…"></textarea>
-    <p class="hint">Tip: coming from a property? It’ll auto-fill below.</p>
+    <p class="hint">Coming from a property, artist or luxury item? Your enquiry details will be filled in below.</p>
   </div>
 
   <!-- Quick meeting booking (optional) -->
@@ -569,16 +574,22 @@ h1,h2,h3{
     // Update year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
  
-    // Prefill message if ?property= is present (from properties page)
+    // Keep the enquiry context from each available collection.
     (function(){
       const params = new URLSearchParams(location.search);
       const prop = params.get('property');
-      if(!prop) return;
+      const artist = params.get('artist');
+      const asset = params.get('asset');
+      if(!prop && !artist && !asset) return;
       const reason = document.getElementById('reason');
       const msg = document.getElementById('message');
-      if (reason) reason.value = "Book a viewing";
+      if (reason) reason.value = prop ? 'Book a viewing' : artist ? 'Art enquiry' : 'Luxury assets enquiry';
       if (msg) {
-        msg.value = `Hello, I'm interested in "${prop}". Please contact me with more details and available viewing times.`;
+        msg.value = prop
+          ? `Hello, I'm interested in "${prop}". Please contact me with more details and available viewing times.`
+          : artist
+            ? `Hello, I'm interested in works by ${artist}. Please contact me with more details.`
+            : `Hello, I'm interested in "${asset}". Please contact me with more details.`;
       }
     })();
 

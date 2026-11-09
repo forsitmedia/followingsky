@@ -12,6 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
+    .porsche-preview { aspect-ratio: 4/5; overflow: hidden; border-radius: 6px; }
+    .porsche-preview > img { object-position: 48% center; }
     :root{
       --bg:#0a0a0a;
       --text:#f0f0ee;
@@ -461,6 +463,8 @@
       .menuOverlay{display:block}
     }
   </style>
+  <link rel="stylesheet" href="assets/css/site-status.css">
+  <script src="assets/js/image-fallbacks.js"></script>
 </head>
 
 <body>
@@ -512,15 +516,10 @@
 
   <section class="item-layout">
 
-    <div class="video-frame">
-      <div class="short-video">
-        <iframe 
-          src="https://www.youtube.com/embed/VIDEO_ID_HERE"
-          title="Porsche 911 Carrera video"
-          allowfullscreen>
-        </iframe>
-      </div>
-    </div>
+    <figure class="photo-preview porsche-preview">
+      <img src="assets/images/placeholders/porsche-911.jpg" alt="Porsche 911 — illustrative preview" fetchpriority="high">
+      <figcaption>Illustrative image. Photography and video of the available vehicle are coming soon.</figcaption>
+    </figure>
 
     <aside class="info-card">
       <div class="kicker">Available Asset</div>
@@ -546,26 +545,12 @@
   </section>
 
   <section class="gallery-section">
-    <div class="section-head">
-      <h2>Selected <em>Photos</em></h2>
-    </div>
-
-    <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80" alt="Porsche 911 exterior">
-      <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=900&q=80" alt="Luxury car detail">
-      <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=900&q=80" alt="Sports car front">
-      <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?w=900&q=80" alt="Car interior">
-      <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=900&q=80" alt="Luxury car side">
-      <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=900&q=80" alt="Luxury car exterior">
+    <div class="section-head"><h2>Vehicle <em>Photography</em></h2></div>
+    <div class="media-pending">
+      <strong>Photos &amp; video coming soon</strong>
+      <p>The vehicle’s gallery is not yet available on the site. Contact us for further details.</p>
     </div>
   </section>
-
-  <div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lightboxClose">×</button>
-  <button class="lightbox-arrow left" id="lightboxPrev">‹</button>
-  <img id="lightboxImage" src="" alt="">
-  <button class="lightbox-arrow right" id="lightboxNext">›</button>
-</div>
 
 </main>
 
@@ -606,58 +591,6 @@
   mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeMenu);
   });
-
-
-const galleryImages = Array.from(document.querySelectorAll('.gallery img'));
-const lightbox = document.getElementById('lightbox');
-const lightboxImage = document.getElementById('lightboxImage');
-const lightboxClose = document.getElementById('lightboxClose');
-const lightboxPrev = document.getElementById('lightboxPrev');
-const lightboxNext = document.getElementById('lightboxNext');
-
-let currentImageIndex = 0;
-
-function openLightbox(index){
-  currentImageIndex = index;
-  lightboxImage.src = galleryImages[currentImageIndex].src;
-  lightbox.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox(){
-  lightbox.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function showPrevImage(){
-  currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-  lightboxImage.src = galleryImages[currentImageIndex].src;
-}
-
-function showNextImage(){
-  currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-  lightboxImage.src = galleryImages[currentImageIndex].src;
-}
-
-galleryImages.forEach((img, index) => {
-  img.addEventListener('click', () => openLightbox(index));
-});
-
-lightboxClose.addEventListener('click', closeLightbox);
-lightboxPrev.addEventListener('click', showPrevImage);
-lightboxNext.addEventListener('click', showNextImage);
-
-lightbox.addEventListener('click', (e) => {
-  if(e.target === lightbox) closeLightbox();
-});
-
-document.addEventListener('keydown', (e) => {
-  if(!lightbox.classList.contains('open')) return;
-
-  if(e.key === 'Escape') closeLightbox();
-  if(e.key === 'ArrowLeft') showPrevImage();
-  if(e.key === 'ArrowRight') showNextImage();
-});
 
 
 </script>
