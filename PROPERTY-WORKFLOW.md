@@ -66,7 +66,7 @@ The user does not need to complete this brief. Omit empty optional fields from t
 
 ## 2. Prepare the content and images
 
-- Write clear English website copy consistent with existing listings, preserving the supplied meaning and relevant detail. Keep a long description as several readable paragraphs or sections.
+- Read existing property descriptions as references for Following Sky's tone and structure, then write fresh English copy specific to the new property. Preserve the supplied facts and relevant detail. Do not paste the source description verbatim or reuse another property's narrative. Keep a long description as several readable paragraphs or sections.
 - Summarise only supported facts on the listing card. Ensure the full description and card agree on price, location, transaction type, and key figures.
 - Inspect the actual photos. Select an appropriate exterior, view, or principal living space as the cover, then order the remaining images logically. Respect a cover choice or order supplied by the user.
 - Keep source originals in the inbox; place web copies in `images/properties/<property-slug>/`. Prefer simple lowercase filenames without trailing spaces. Compress and size images appropriately, typically up to 1600–2000 pixels for large views, preserving orientation and acceptable quality.
