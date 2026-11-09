@@ -1,6 +1,6 @@
 # Content and image updates
 
-The property collection contains seven listings, including The Green House in Vila Utopia. See `PROPERTY-WORKFLOW.md` for the current page map and the local working briefs for source and publication details. Ivone Machado and the Porsche 911 Carrera are the available art and luxury collections. Event enquiries remain available; event films and original event photography are coming soon.
+The property collection contains eight listings, including The Green House in Vila Utopia and The Restelo Residence rental in Lisbon. See `PROPERTY-WORKFLOW.md` for the current page map and the local working briefs for source and publication details. Ivone Machado and the Porsche 911 Carrera are the available art and luxury collections. Event enquiries remain available; event films and original event photography are coming soon.
 
 Sofia Mendes, Léna Duvivier, Collector Watch, Rare Design Piece, and the three brand collaborations are previews. Their cards have no links or enquiry buttons and show **Coming soon — Not yet available on the site**. Existing unfinished detail URLs display the same status. Previous draft layouts remain available in Git history.
 
