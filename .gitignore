@@ -12,3 +12,7 @@ coverage/
 
 # backend (not deployed on GitHub Pages)
 appointment-backend/
+
+# Local property submissions and working briefs
+property-inbox/*
+!property-inbox/README.md
